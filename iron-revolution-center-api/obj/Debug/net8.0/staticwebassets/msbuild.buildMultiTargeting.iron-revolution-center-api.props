@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\iron-revolution-center-api.props" />
+</Project>

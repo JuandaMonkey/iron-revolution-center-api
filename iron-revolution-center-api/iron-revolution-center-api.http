@@ -1,0 +1,6 @@
+@iron_revolution_center_api_HostAddress = http://localhost:5210
+
+GET {{iron_revolution_center_api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

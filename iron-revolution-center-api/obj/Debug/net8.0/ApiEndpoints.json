@@ -1,0 +1,144 @@
+[
+  {
+    "ContainingType": "iron_revolution_center_api.Controllers.ClientsController",
+    "Method": "ListClients",
+    "RelativePath": "api/Clients",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "iron_revolution_center_api.Controllers.ClientsController",
+    "Method": "registerClient",
+    "RelativePath": "api/Clients",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "clientDTO",
+        "Type": "iron_revolution_center_api.DTOs.Clients.RegisterClientsDTos",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "iron_revolution_center_api.Controllers.ClientsController",
+    "Method": "getClientByNIP",
+    "RelativePath": "api/Clients/{NIP}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "NIP",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "iron_revolution_center_api.Controllers.ClientsController",
+    "Method": "modifyClient",
+    "RelativePath": "api/Clients/{NIP}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "NIP",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "clientDTO",
+        "Type": "iron_revolution_center_api.DTOs.Clients.ModifyClientDTOs",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "iron_revolution_center_api.Controllers.ClientsController",
+    "Method": "deleteClient",
+    "RelativePath": "api/Clients/{NIP}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "NIP",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "iron_revolution_center_api.Controllers.UsersController",
+    "Method": "RegisterUser",
+    "RelativePath": "api/Users",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userDTO",
+        "Type": "iron_revolution_center_api.DTOs.Users.RegisterUserDTOs",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "iron_revolution_center_api.Controllers.UsersController",
+    "Method": "assignClient",
+    "RelativePath": "api/Users/assign-client",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "user_name",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "NIP",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "password",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "iron_revolution_center_api.Controllers.UsersController",
+    "Method": "LoginUser",
+    "RelativePath": "api/Users/login",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userName",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "password",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  }
+]

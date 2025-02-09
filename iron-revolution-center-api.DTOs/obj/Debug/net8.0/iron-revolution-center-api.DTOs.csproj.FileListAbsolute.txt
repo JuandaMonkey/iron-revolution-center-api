@@ -1,0 +1,12 @@
+C:\Users\juand\OneDrive\Escritorio\iron-revolution-center\iron-revolution-center-api\iron-revolution-center-api.DTOs\bin\Debug\net8.0\iron-revolution-center-api.DTOs.deps.json
+C:\Users\juand\OneDrive\Escritorio\iron-revolution-center\iron-revolution-center-api\iron-revolution-center-api.DTOs\bin\Debug\net8.0\iron-revolution-center-api.DTOs.dll
+C:\Users\juand\OneDrive\Escritorio\iron-revolution-center\iron-revolution-center-api\iron-revolution-center-api.DTOs\bin\Debug\net8.0\iron-revolution-center-api.DTOs.pdb
+C:\Users\juand\OneDrive\Escritorio\iron-revolution-center\iron-revolution-center-api\iron-revolution-center-api.DTOs\obj\Debug\net8.0\iron-revolution-center-api.DTOs.csproj.AssemblyReference.cache
+C:\Users\juand\OneDrive\Escritorio\iron-revolution-center\iron-revolution-center-api\iron-revolution-center-api.DTOs\obj\Debug\net8.0\iron-revolution-center-api.DTOs.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\juand\OneDrive\Escritorio\iron-revolution-center\iron-revolution-center-api\iron-revolution-center-api.DTOs\obj\Debug\net8.0\iron-revolution-center-api.DTOs.AssemblyInfoInputs.cache
+C:\Users\juand\OneDrive\Escritorio\iron-revolution-center\iron-revolution-center-api\iron-revolution-center-api.DTOs\obj\Debug\net8.0\iron-revolution-center-api.DTOs.AssemblyInfo.cs
+C:\Users\juand\OneDrive\Escritorio\iron-revolution-center\iron-revolution-center-api\iron-revolution-center-api.DTOs\obj\Debug\net8.0\iron-revolution-center-api.DTOs.csproj.CoreCompileInputs.cache
+C:\Users\juand\OneDrive\Escritorio\iron-revolution-center\iron-revolution-center-api\iron-revolution-center-api.DTOs\obj\Debug\net8.0\iron-revolution-center-api.DTOs.dll
+C:\Users\juand\OneDrive\Escritorio\iron-revolution-center\iron-revolution-center-api\iron-revolution-center-api.DTOs\obj\Debug\net8.0\refint\iron-revolution-center-api.DTOs.dll
+C:\Users\juand\OneDrive\Escritorio\iron-revolution-center\iron-revolution-center-api\iron-revolution-center-api.DTOs\obj\Debug\net8.0\iron-revolution-center-api.DTOs.pdb
+C:\Users\juand\OneDrive\Escritorio\iron-revolution-center\iron-revolution-center-api\iron-revolution-center-api.DTOs\obj\Debug\net8.0\ref\iron-revolution-center-api.DTOs.dll

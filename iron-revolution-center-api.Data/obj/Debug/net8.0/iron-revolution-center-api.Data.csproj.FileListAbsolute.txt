@@ -1,0 +1,17 @@
+C:\Users\juand\OneDrive\Escritorio\iron-revolution-center\iron-revolution-center-api\iron-revolution-center-api.Data\bin\Debug\net8.0\iron-revolution-center-api.Data.deps.json
+C:\Users\juand\OneDrive\Escritorio\iron-revolution-center\iron-revolution-center-api\iron-revolution-center-api.Data\bin\Debug\net8.0\iron-revolution-center-api.Data.dll
+C:\Users\juand\OneDrive\Escritorio\iron-revolution-center\iron-revolution-center-api\iron-revolution-center-api.Data\bin\Debug\net8.0\iron-revolution-center-api.Data.pdb
+C:\Users\juand\OneDrive\Escritorio\iron-revolution-center\iron-revolution-center-api\iron-revolution-center-api.Data\bin\Debug\net8.0\iron-revolution-center-api.DTOs.dll
+C:\Users\juand\OneDrive\Escritorio\iron-revolution-center\iron-revolution-center-api\iron-revolution-center-api.Data\bin\Debug\net8.0\iron-revolution-center-api.Models.dll
+C:\Users\juand\OneDrive\Escritorio\iron-revolution-center\iron-revolution-center-api\iron-revolution-center-api.Data\bin\Debug\net8.0\iron-revolution-center-api.DTOs.pdb
+C:\Users\juand\OneDrive\Escritorio\iron-revolution-center\iron-revolution-center-api\iron-revolution-center-api.Data\bin\Debug\net8.0\iron-revolution-center-api.Models.pdb
+C:\Users\juand\OneDrive\Escritorio\iron-revolution-center\iron-revolution-center-api\iron-revolution-center-api.Data\obj\Debug\net8.0\iron-revolution-center-api.Data.csproj.AssemblyReference.cache
+C:\Users\juand\OneDrive\Escritorio\iron-revolution-center\iron-revolution-center-api\iron-revolution-center-api.Data\obj\Debug\net8.0\iron-revolution-center-api.Data.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\juand\OneDrive\Escritorio\iron-revolution-center\iron-revolution-center-api\iron-revolution-center-api.Data\obj\Debug\net8.0\iron-revolution-center-api.Data.AssemblyInfoInputs.cache
+C:\Users\juand\OneDrive\Escritorio\iron-revolution-center\iron-revolution-center-api\iron-revolution-center-api.Data\obj\Debug\net8.0\iron-revolution-center-api.Data.AssemblyInfo.cs
+C:\Users\juand\OneDrive\Escritorio\iron-revolution-center\iron-revolution-center-api\iron-revolution-center-api.Data\obj\Debug\net8.0\iron-revolution-center-api.Data.csproj.CoreCompileInputs.cache
+C:\Users\juand\OneDrive\Escritorio\iron-revolution-center\iron-revolution-center-api\iron-revolution-center-api.Data\obj\Debug\net8.0\iron-rev.1FB60DF7.Up2Date
+C:\Users\juand\OneDrive\Escritorio\iron-revolution-center\iron-revolution-center-api\iron-revolution-center-api.Data\obj\Debug\net8.0\iron-revolution-center-api.Data.dll
+C:\Users\juand\OneDrive\Escritorio\iron-revolution-center\iron-revolution-center-api\iron-revolution-center-api.Data\obj\Debug\net8.0\refint\iron-revolution-center-api.Data.dll
+C:\Users\juand\OneDrive\Escritorio\iron-revolution-center\iron-revolution-center-api\iron-revolution-center-api.Data\obj\Debug\net8.0\iron-revolution-center-api.Data.pdb
+C:\Users\juand\OneDrive\Escritorio\iron-revolution-center\iron-revolution-center-api\iron-revolution-center-api.Data\obj\Debug\net8.0\ref\iron-revolution-center-api.Data.dll

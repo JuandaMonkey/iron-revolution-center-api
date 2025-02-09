@@ -1,0 +1,12 @@
+C:\Users\juand\OneDrive\Escritorio\iron-revolution-center\iron-revolution-center-api\iron-revolution-center-api.Models\bin\Debug\net8.0\iron-revolution-center-api.Models.deps.json
+C:\Users\juand\OneDrive\Escritorio\iron-revolution-center\iron-revolution-center-api\iron-revolution-center-api.Models\bin\Debug\net8.0\iron-revolution-center-api.Models.dll
+C:\Users\juand\OneDrive\Escritorio\iron-revolution-center\iron-revolution-center-api\iron-revolution-center-api.Models\bin\Debug\net8.0\iron-revolution-center-api.Models.pdb
+C:\Users\juand\OneDrive\Escritorio\iron-revolution-center\iron-revolution-center-api\iron-revolution-center-api.Models\obj\Debug\net8.0\iron-revolution-center-api.Models.csproj.AssemblyReference.cache
+C:\Users\juand\OneDrive\Escritorio\iron-revolution-center\iron-revolution-center-api\iron-revolution-center-api.Models\obj\Debug\net8.0\iron-revolution-center-api.Models.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\juand\OneDrive\Escritorio\iron-revolution-center\iron-revolution-center-api\iron-revolution-center-api.Models\obj\Debug\net8.0\iron-revolution-center-api.Models.AssemblyInfoInputs.cache
+C:\Users\juand\OneDrive\Escritorio\iron-revolution-center\iron-revolution-center-api\iron-revolution-center-api.Models\obj\Debug\net8.0\iron-revolution-center-api.Models.AssemblyInfo.cs
+C:\Users\juand\OneDrive\Escritorio\iron-revolution-center\iron-revolution-center-api\iron-revolution-center-api.Models\obj\Debug\net8.0\iron-revolution-center-api.Models.csproj.CoreCompileInputs.cache
+C:\Users\juand\OneDrive\Escritorio\iron-revolution-center\iron-revolution-center-api\iron-revolution-center-api.Models\obj\Debug\net8.0\iron-revolution-center-api.Models.dll
+C:\Users\juand\OneDrive\Escritorio\iron-revolution-center\iron-revolution-center-api\iron-revolution-center-api.Models\obj\Debug\net8.0\refint\iron-revolution-center-api.Models.dll
+C:\Users\juand\OneDrive\Escritorio\iron-revolution-center\iron-revolution-center-api\iron-revolution-center-api.Models\obj\Debug\net8.0\iron-revolution-center-api.Models.pdb
+C:\Users\juand\OneDrive\Escritorio\iron-revolution-center\iron-revolution-center-api\iron-revolution-center-api.Models\obj\Debug\net8.0\ref\iron-revolution-center-api.Models.dll
