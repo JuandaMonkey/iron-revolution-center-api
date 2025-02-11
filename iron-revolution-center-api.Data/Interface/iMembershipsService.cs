@@ -1,4 +1,4 @@
-﻿using iron_revolution_center_api.DTOs.Clients;
+﻿using iron_revolution_center_api.DTOs.Client;
 using iron_revolution_center_api.DTOs.Membership;
 using iron_revolution_center_api.Models;
 using System;
@@ -15,7 +15,7 @@ namespace iron_revolution_center_api.Data.Interface
         // list of memberships
         public Task<IEnumerable<MembershipsModel>> ListMemberships();
 
-        // get a membership by nip
+        // get a membership by identification
         public Task<IEnumerable<MembershipsModel>> GetMembershipByID(string membershipID);
 
         // insert membership

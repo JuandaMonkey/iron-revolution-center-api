@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using iron_revolution_center_api.DTOs.Clients;
+using iron_revolution_center_api.DTOs.Client;
 using iron_revolution_center_api.Models;
 using MongoDB.Driver;
 
@@ -18,13 +18,13 @@ namespace iron_revolution_center_api.Data.Interface
         // get a client by nip
         public Task<IEnumerable<ClientsModel>> GetClientByNIP(string NIP);
 
-        // register a client
-        public Task<RegisterClientsDTos> RegisterClient(RegisterClientsDTos RegisterClientsDTos);
+        // register client
+        public Task<RegisterClientDTO> RegisterClient(RegisterClientDTO clientDTO);
 
-        // modify a client
-        public Task<ClientsModel> ModifyClient(string NIP, ModifyClientDTOs ModifyClientDTOs);
+        // modify client
+        public Task<ClientsModel> ModifyClient(string NIP, ModifyClientDTO clientDTO);
 
-        // delete a client
+        // delete client
         public Task<ClientsModel> DeleteClient(string NIP);
     }
 }

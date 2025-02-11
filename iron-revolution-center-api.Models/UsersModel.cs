@@ -23,7 +23,7 @@ namespace iron_revolution_center_api.Models
         [BsonElement("Role")]
         public string? Role { get; set; } // role
 
-        [BsonElement("Assign")]
-        public ClientsModel? Client { get; set; } // assign
+        [BsonElement("NIP")]
+        public string? NIP { get; set; } // nip (client or staff)
     }
 }

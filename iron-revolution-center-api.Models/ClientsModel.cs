@@ -29,22 +29,5 @@ namespace iron_revolution_center_api.Models
 
         [BsonElement("Observation")]
         public string? Observation { get; set; }  // observation
-
-        [BsonElement("Membership")]
-        public Membership? Membership { get; set; }  // membership
-    }
-    public class Membership
-    {
-        [BsonElement("Name")]
-        public string? Name { get; set; } // name
-
-        [BsonElement("Start_Date")]
-        public DateTime? Start_Date { get; set; } // start date
-
-        [BsonElement("End_Date")]
-        public DateTime? End_Date { get; set; } // end date
-
-        [BsonElement("Status")]
-        public bool Status { get; set; } // status membership
     }
 }

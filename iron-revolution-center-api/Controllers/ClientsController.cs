@@ -1,5 +1,5 @@
 ﻿using iron_revolution_center_api.Data.Interface;
-using iron_revolution_center_api.DTOs.Clients;
+using iron_revolution_center_api.DTOs.Client;
 using iron_revolution_center_api.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -10,10 +10,13 @@ namespace iron_revolution_center_api.Controllers
     public class ClientsController : Controller
     {
         private iClientsService _clientService;
-        public ClientsController(iClientsService clientService) => _clientService = clientService;
+        public ClientsController(iClientsService clientService)
+        {
+            _clientService = clientService;
+        }
 
         #region ListsClients
-        [HttpGet]
+        [HttpGet("Lists-Clients")]
         public async Task<IActionResult> ListClients()
         {
             try
@@ -30,13 +33,10 @@ namespace iron_revolution_center_api.Controllers
         }
         #endregion
 
-        #region SearchClientByNIP
-        [HttpGet("{NIP}")]
-        public async Task<IActionResult> getClientByNIP(string NIP)
+        #region GetClientByNIP
+        [HttpGet("Get-Client-By-NIP")]
+        public async Task<IActionResult> GetClientByNIP([FromHeader] string NIP)
         {
-            if (string.IsNullOrEmpty(NIP))
-                return BadRequest("El NIP no puede estar vacío.");
-
             try
             {
                 var clients = await _clientService.GetClientByNIP(NIP);
@@ -45,21 +45,17 @@ namespace iron_revolution_center_api.Controllers
                     return Ok(clients);
                 else
                     return NoContent();
-            }
-            catch (Exception ex)
+            } catch (Exception ex)
             {
                 return StatusCode(500, $"Error: {ex.Message}");
             }
         }
         #endregion
 
-        #region register_client
-        [HttpPost]
-        public async Task<IActionResult> registerClient([FromBody] RegisterClientsDTos clientDTO)
+        #region RegisterClient
+        [HttpPost("Register-Client")]
+        public async Task<IActionResult> RegisterClient([FromBody] RegisterClientDTO clientDTO)
         {
-            if (clientDTO == null)
-                return BadRequest("Los datos del cliente no pueden estar vacíos.");
-
             try
             {
                 var client = await _clientService.RegisterClient(clientDTO);
@@ -74,15 +70,10 @@ namespace iron_revolution_center_api.Controllers
         }
         #endregion
 
-        #region modify_client
-        [HttpPut("{NIP}")]
-        public async Task<IActionResult> modifyClient(string NIP, [FromBody] ModifyClientDTOs clientDTO)
+        #region ModifyClient
+        [HttpPut("Modify-Client")]
+        public async Task<IActionResult> ModifyClient([FromHeader] string NIP, [FromBody] ModifyClientDTO clientDTO)
         {
-            if (string.IsNullOrEmpty(NIP))
-                return BadRequest("El NIP no puede estar vacío.");
-            if (clientDTO == null)
-                return BadRequest("Los datos del cliente no pueden estar vacíos.");
-
             try
             {
                 var client = await _clientService.ModifyClient(NIP, clientDTO);
@@ -97,13 +88,10 @@ namespace iron_revolution_center_api.Controllers
         }
         #endregion
 
-        #region delete_client
-        [HttpDelete("{NIP}")]
-        public async Task<IActionResult> deleteClient(string NIP)
+        #region DeleteClient
+        [HttpDelete("Delete-Client")]
+        public async Task<IActionResult> DeleteClient([FromHeader] string NIP)
         {
-            if (string.IsNullOrEmpty(NIP))
-                BadRequest("El NIP no puede estar vacío.");
-
             try
             {
                 var client = await _clientService.DeleteClient(NIP);

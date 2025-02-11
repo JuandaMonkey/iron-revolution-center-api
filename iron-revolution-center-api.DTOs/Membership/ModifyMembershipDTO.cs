@@ -16,7 +16,6 @@ namespace iron_revolution_center_api.DTOs.Membership
         public string? Name { get; set; } // name membership
 
         [BsonElement("Duration")]
-        [RegularExpression(@"^[0-9]$", ErrorMessage = "La duración debe contener solo números.")]
         public int? Duration { get; set; } // duration membership in days
     }
 }

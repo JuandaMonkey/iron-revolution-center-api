@@ -57,6 +57,8 @@ namespace iron_revolution_center_api
 
             // services
             builder.Services.AddScoped<iClientsService, ClientsService>(); // clients
+            builder.Services.AddScoped<iMembershipsService, MembershipsService>(); // memberships
+            builder.Services.AddScoped<iRolesService, RolesService>(); // roles
             builder.Services.AddScoped<iUsersService, UsersService>(); // users
 
             var app = builder.Build();
