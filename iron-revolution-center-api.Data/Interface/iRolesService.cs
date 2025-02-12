@@ -14,7 +14,7 @@ namespace iron_revolution_center_api.Data.Interface
         // list of roles
         public Task<IEnumerable<RolesModel>> ListRoles();
 
-        // get a role by identification
+        // get role by identification
         public Task<IEnumerable<RolesModel>> GetRoleByID(string roleID);
 
         // insert role

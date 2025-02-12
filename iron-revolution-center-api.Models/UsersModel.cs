@@ -1,14 +1,13 @@
-﻿using System;
+﻿using MongoDB.Bson.Serialization.Attributes;
+using MongoDB.Bson;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using MongoDB.Bson.Serialization.Attributes;
-using MongoDB.Bson;
 
 namespace iron_revolution_center_api.Models
 {
-    // db.Users
     public class UsersModel
     {
         [BsonId]
@@ -24,6 +23,6 @@ namespace iron_revolution_center_api.Models
         public string? Role { get; set; } // role
 
         [BsonElement("NIP")]
-        public string? NIP { get; set; } // nip (client or staff)
+        public string? NIP { get; set; } // nip
     }
 }

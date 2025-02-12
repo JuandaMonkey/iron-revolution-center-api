@@ -15,7 +15,7 @@ namespace iron_revolution_center_api.Data.Interface
         // list of memberships
         public Task<IEnumerable<MembershipsModel>> ListMemberships();
 
-        // get a membership by identification
+        // get membership by identification
         public Task<IEnumerable<MembershipsModel>> GetMembershipByID(string membershipID);
 
         // insert membership

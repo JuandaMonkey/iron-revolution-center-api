@@ -15,7 +15,7 @@ namespace iron_revolution_center_api.Data.Interface
         // list of clients
         public Task<IEnumerable<ClientsModel>> ListClients();
 
-        // get a client by nip
+        // get client by nip
         public Task<IEnumerable<ClientsModel>> GetClientByNIP(string NIP);
 
         // register client

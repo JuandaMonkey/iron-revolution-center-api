@@ -78,7 +78,7 @@ namespace iron_revolution_center_api.Data.Service
         {
             try
             {
-                // get the collection
+                // get the collection clients
                 return await _clientsCollection
                     .Find(FilterDefinition<ClientsModel>.Empty)
                     .Project<ClientsModel>(ExcludeIdProjection())
@@ -99,7 +99,7 @@ namespace iron_revolution_center_api.Data.Service
                 throw new ArgumentException($"El NIP: {NIP} no existe.");
             try
             {
-                // get the collection
+                // get clients
                 return await _clientsCollection
                     .Find(Client => Client.NIP == NIP)
                     .Project<ClientsModel>(ExcludeIdProjection())
@@ -144,12 +144,12 @@ namespace iron_revolution_center_api.Data.Service
 
                 // check if is not null
                 if (newClient == null)
-                    throw new Exception($"Inserción fallida.");
+                    throw new Exception($"Registro fallido.");
 
-                // insert
+                // register
                 await _registerClientCollection.InsertOneAsync(newClient);
 
-                // return a client
+                // client
                 return newClient;
             } catch (MongoException ex) {
                 // in case of error
@@ -161,7 +161,6 @@ namespace iron_revolution_center_api.Data.Service
                 // in case of error 
                 throw new Exception($"Error: {ex}");
             }
-
         }
         #endregion
 
