@@ -1,5 +1,115 @@
 [
   {
+    "ContainingType": "iron_revolution_center_api.Controllers.Activity_CenterController",
+    "Method": "ListActivity",
+    "RelativePath": "api/Activity_Center/List-Activity",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "iron_revolution_center_api.Controllers.Activity_CenterController",
+    "Method": "RegisterEntry",
+    "RelativePath": "api/Activity_Center/Register-Entry",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "NIP",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "branchOffice",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "iron_revolution_center_api.Controllers.Activity_CenterController",
+    "Method": "RegisterExit",
+    "RelativePath": "api/Activity_Center/RegisterExit",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "NIP",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "iron_revolution_center_api.Controllers.Branches_OfficeController",
+    "Method": "DeleteBranch_Office",
+    "RelativePath": "api/Branches_Office/Delete-Branch-Office",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "branchOfficeID",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "iron_revolution_center_api.Controllers.Branches_OfficeController",
+    "Method": "ListBranch_Office",
+    "RelativePath": "api/Branches_Office/List-Branch-Office",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "iron_revolution_center_api.Controllers.Branches_OfficeController",
+    "Method": "ModifyBranch_Office",
+    "RelativePath": "api/Branches_Office/Modify-Branch-Office",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "branchOfficeID",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "branchOfficeDTO",
+        "Type": "iron_revolution_center_api.DTOs.Branch_Office.ModifyBranche_OfficeDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "iron_revolution_center_api.Controllers.Branches_OfficeController",
+    "Method": "RegisterBranch_Office",
+    "RelativePath": "api/Branches_Office/Register-Branch-Office",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "branchOfficeDTO",
+        "Type": "iron_revolution_center_api.DTOs.Branch_Office.InsertBranche_OfficeDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "iron_revolution_center_api.Controllers.ClientsController",
     "Method": "DeleteClient",
     "RelativePath": "api/Clients/Delete-Client",
@@ -79,15 +189,15 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "iron_revolution_center_api.Controllers.MembershipController",
-    "Method": "DeleteMembership",
-    "RelativePath": "api/Membership/Delete-Membership",
+    "ContainingType": "iron_revolution_center_api.Controllers.ExercisesController",
+    "Method": "DeleteExercises",
+    "RelativePath": "api/Exercises/Delete-Exercises",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "membershipID",
+        "Name": "exerciseID",
         "Type": "System.String",
         "IsRequired": false
       }
@@ -95,10 +205,57 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "iron_revolution_center_api.Controllers.MembershipController",
-    "Method": "GetMembershipByID",
-    "RelativePath": "api/Membership/Get-Membership-By-ID",
+    "ContainingType": "iron_revolution_center_api.Controllers.ExercisesController",
+    "Method": "ListExercises",
+    "RelativePath": "api/Exercises/List-Exercises",
     "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "iron_revolution_center_api.Controllers.ExercisesController",
+    "Method": "ModifyExercises",
+    "RelativePath": "api/Exercises/Modify-Exercises",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "exerciseID",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "exerciseDTO",
+        "Type": "iron_revolution_center_api.DTOs.Exercise.ModifyExerciseDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "iron_revolution_center_api.Controllers.ExercisesController",
+    "Method": "RegisterExercises",
+    "RelativePath": "api/Exercises/Register-Exercises",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "exerciseDTO",
+        "Type": "iron_revolution_center_api.DTOs.Exercise.InsertExerciseDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "iron_revolution_center_api.Controllers.MembershipController",
+    "Method": "DeleteMembership",
+    "RelativePath": "api/Membership/Delete-Membership",
+    "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
     "Parameters": [
@@ -158,15 +315,36 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "iron_revolution_center_api.Controllers.RolesController",
-    "Method": "DeleteRole",
-    "RelativePath": "api/Roles/Delete-Role",
-    "HttpMethod": "DELETE",
+    "ContainingType": "iron_revolution_center_api.Controllers.MembershipAssigmentController",
+    "Method": "AssignMembership",
+    "RelativePath": "api/MembershipAssigment/Assign-Membership",
+    "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "roleID",
+        "Name": "NIP",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "membershipID",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "iron_revolution_center_api.Controllers.MembershipAssigmentController",
+    "Method": "GetMembershipDetails",
+    "RelativePath": "api/MembershipAssigment/Get-Membership-Details",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "NIP",
         "Type": "System.String",
         "IsRequired": false
       }
@@ -175,9 +353,9 @@
   },
   {
     "ContainingType": "iron_revolution_center_api.Controllers.RolesController",
-    "Method": "GetRoleByID",
-    "RelativePath": "api/Roles/Get-Role-By-ID",
-    "HttpMethod": "GET",
+    "Method": "DeleteRole",
+    "RelativePath": "api/Roles/Delete-Role",
+    "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
     "Parameters": [
@@ -231,6 +409,101 @@
       {
         "Name": "roleDTO",
         "Type": "iron_revolution_center_api.DTOs.Role.ModifyRoleDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "iron_revolution_center_api.Controllers.StaffController",
+    "Method": "DeleteStaff",
+    "RelativePath": "api/Staff/Delete-Staff",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "NIP",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "iron_revolution_center_api.Controllers.StaffController",
+    "Method": "GetStaffByNIP",
+    "RelativePath": "api/Staff/Get-Staff-By-NIP",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "NIP",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "iron_revolution_center_api.Controllers.StaffController",
+    "Method": "ListStaff",
+    "RelativePath": "api/Staff/List-Staff",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "iron_revolution_center_api.Controllers.StaffController",
+    "Method": "ListStaffByBranchOffice",
+    "RelativePath": "api/Staff/List-Staff-By-Branch-Office",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "branchID",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "iron_revolution_center_api.Controllers.StaffController",
+    "Method": "ModifyStaff",
+    "RelativePath": "api/Staff/Modify-Staff",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "NIP",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "staffDTO",
+        "Type": "iron_revolution_center_api.DTOs.Staff.ModifyStaffDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "iron_revolution_center_api.Controllers.StaffController",
+    "Method": "RegisterStaff",
+    "RelativePath": "api/Staff/Register-Staff",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "staffDTO",
+        "Type": "iron_revolution_center_api.DTOs.Staff.RegisterStaffDTO",
         "IsRequired": true
       }
     ],

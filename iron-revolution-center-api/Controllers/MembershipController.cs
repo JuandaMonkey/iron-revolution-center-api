@@ -36,21 +36,21 @@ namespace iron_revolution_center_api.Controllers
         #endregion
 
         #region GetMembershipByID
-        [HttpGet("Get-Membership-By-ID")]
-        public async Task<IActionResult> GetMembershipByID([FromHeader] string membershipID)
-        {
-            try
-            {
-                var membership = await _membershipService.GetMembershipByID(membershipID);
+        //[HttpGet("Get-Membership-By-ID")]
+        //public async Task<IActionResult> GetMembershipByID([FromHeader] string membershipID)
+        //{
+        //    try
+        //    {
+        //        var membership = await _membershipService.GetMembershipByID(membershipID);
 
-                if (membership != null)
-                    return Ok(membership);
-                else
-                    return NoContent();
-            } catch (Exception ex) {
-                return StatusCode(500, $"Error: {ex.Message}");
-            }
-        }
+        //        if (membership != null)
+        //            return Ok(membership);
+        //        else
+        //            return NoContent();
+        //    } catch (Exception ex) {
+        //        return StatusCode(500, $"Error: {ex.Message}");
+        //    }
+        //}
         #endregion
 
         #region InsertMembership

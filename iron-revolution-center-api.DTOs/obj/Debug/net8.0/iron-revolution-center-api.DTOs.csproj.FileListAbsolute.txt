@@ -11,3 +11,6 @@ C:\Users\juand\OneDrive\Escritorio\iron-revolution-center\iron-revolution-center
 C:\Users\juand\OneDrive\Escritorio\iron-revolution-center\iron-revolution-center-api\iron-revolution-center-api.DTOs\obj\Debug\net8.0\iron-revolution-center-api.DTOs.pdb
 C:\Users\juand\OneDrive\Escritorio\iron-revolution-center\iron-revolution-center-api\iron-revolution-center-api.DTOs\obj\Debug\net8.0\ref\iron-revolution-center-api.DTOs.dll
 C:\Users\juand\OneDrive\Escritorio\iron-revolution-center\iron-revolution-center-api\iron-revolution-center-api.DTOs\obj\Debug\net8.0\iron-revolution-center-api.DTOs.sourcelink.json
+C:\Users\juand\OneDrive\Escritorio\iron-revolution-center\iron-revolution-center-api\iron-revolution-center-api.DTOs\bin\Debug\net8.0\iron-revolution-center-api.Models.dll
+C:\Users\juand\OneDrive\Escritorio\iron-revolution-center\iron-revolution-center-api\iron-revolution-center-api.DTOs\bin\Debug\net8.0\iron-revolution-center-api.Models.pdb
+C:\Users\juand\OneDrive\Escritorio\iron-revolution-center\iron-revolution-center-api\iron-revolution-center-api.DTOs\obj\Debug\net8.0\iron-rev.55757365.Up2Date

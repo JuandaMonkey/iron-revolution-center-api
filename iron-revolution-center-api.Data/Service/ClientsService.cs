@@ -179,13 +179,17 @@ namespace iron_revolution_center_api.Data.Service
 
                 // modify not null field
                 if (!string.IsNullOrEmpty(clientDTO.Photo)) // photo
-                    updateDefinitions.Add(updateBuilder.Set(c => c.Photo, clientDTO.Photo));
+                    updateDefinitions.Add(updateBuilder.Set(client => client.Photo, clientDTO.Photo));
                 if (!string.IsNullOrEmpty(clientDTO.Full_Name)) // full name
-                    updateDefinitions.Add(updateBuilder.Set(c => c.Full_Name, clientDTO.Full_Name));
+                    updateDefinitions.Add(updateBuilder.Set(client => client.Full_Name, clientDTO.Full_Name));
                 if (!string.IsNullOrEmpty(clientDTO.Phone)) // phone
-                    updateDefinitions.Add(updateBuilder.Set(c => c.Phone, clientDTO.Phone));
+                {
+                    if (await ValidateClientPhone(clientDTO.Phone))
+                        throw new ArgumentException($"El número de teléfono: {clientDTO.Phone} ya está en uso.");
+                    updateDefinitions.Add(updateBuilder.Set(client => client.Phone, clientDTO.Phone));
+                }
                 if (!string.IsNullOrEmpty(clientDTO.Observation)) // observation
-                    updateDefinitions.Add(updateBuilder.Set(c => c.Observation, clientDTO.Observation));
+                    updateDefinitions.Add(updateBuilder.Set(client => client.Observation, clientDTO.Observation));
 
                 // verification
                 if (!updateDefinitions.Any())

@@ -114,7 +114,7 @@ namespace iron_revolution_center_api.Data.Service
             if (!await ValidateRoleExists(roleID)) // field verification
             {
                 var roleName = await GetRoleNameByID(roleID);
-                throw new ArgumentException($"El role: {GetRoleNameByID(roleID)} no existe.");
+                throw new ArgumentException($"El role: {roleName} no existe.");
             }
             try
             {
@@ -141,6 +141,8 @@ namespace iron_revolution_center_api.Data.Service
         {
             if (string.IsNullOrEmpty(userName)) // field verification
                 throw new ArgumentException("El nombre de usuario no puede estar vacío.", nameof(userName));
+            if (!await ValidateUserName(userName)) // field veridication
+                throw new ArgumentException($"El nombre de usuario: {userName} no existe.");
             try
             {
                 // get the collection
@@ -290,11 +292,11 @@ namespace iron_revolution_center_api.Data.Service
         public async Task<UsersModel> ModifyPassword(string userName, ModifyPassworDTO passwordDTO)
         {
             if (string.IsNullOrEmpty(userName)) // field verification
-                throw new ArgumentException("El ID de usuario no puede estar vacío.", nameof(userName));
-            if (string.IsNullOrEmpty(passwordDTO.Password)) // field verification
-                throw new ArgumentException("El nombre de usuario no puede estar vacío.", nameof(passwordDTO.Password));
+                throw new ArgumentException("El nombre usuario no puede estar vacío.", nameof(userName));
             if (await ValidateUserName(userName) == false) // field verification
                 throw new ArgumentException($"El nombre de usuario: {userName} no existe.");
+            if (string.IsNullOrEmpty(passwordDTO.Password)) // field verification
+                throw new ArgumentException("La contraseña no puede estar vacío.", nameof(passwordDTO.Password));
             try
             {
                 // find a user

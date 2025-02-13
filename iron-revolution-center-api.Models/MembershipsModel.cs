@@ -21,6 +21,6 @@ namespace iron_revolution_center_api.Models
         public string? Name { get; set; } // name membership
 
         [BsonElement("Duration")]
-        public int? Duration { get; set; } // duration membership
+        public int Duration { get; set; } // duration membership
     }
 }

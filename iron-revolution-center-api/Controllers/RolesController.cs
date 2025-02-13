@@ -34,21 +34,21 @@ namespace iron_revolution_center_api.Controllers
         #endregion
 
         #region GetRoleByID
-        [HttpGet("Get-Role-By-ID")]
-        public async Task<IActionResult> GetRoleByID([FromHeader] string roleID)
-        {
-            try
-            {
-                var role = await _roleService.GetRoleByID(roleID);
+        //[HttpGet("Get-Role-By-ID")]
+        //public async Task<IActionResult> GetRoleByID([FromHeader] string roleID)
+        //{
+        //    try
+        //    {
+        //        var role = await _roleService.GetRoleByID(roleID);
 
-                if (role != null)
-                    return Ok(role);
-                else
-                    return NoContent();
-            } catch (Exception ex) {
-                return StatusCode(500, $"Error: {ex.Message}");
-            }
-        }
+        //        if (role != null)
+        //            return Ok(role);
+        //        else
+        //            return NoContent();
+        //    } catch (Exception ex) {
+        //        return StatusCode(500, $"Error: {ex.Message}");
+        //    }
+        //}
         #endregion
 
         #region InsertRole

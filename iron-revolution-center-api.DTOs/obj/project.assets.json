@@ -40,6 +40,19 @@
             "related": ".xml"
           }
         }
+      },
+      "iron-revolution-center-api.Models/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "dependencies": {
+          "MongoDB.Bson": "3.1.0"
+        },
+        "compile": {
+          "bin/placeholder/iron-revolution-center-api.Models.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/iron-revolution-center-api.Models.dll": {}
+        }
       }
     }
   },
@@ -117,11 +130,17 @@
         "useSharedDesignerContext.txt",
         "version.txt"
       ]
+    },
+    "iron-revolution-center-api.Models/1.0.0": {
+      "type": "project",
+      "path": "../iron-revolution-center-api.Models/iron-revolution-center-api.Models.csproj",
+      "msbuildProject": "../iron-revolution-center-api.Models/iron-revolution-center-api.Models.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net8.0": [
-      "MongoDB.Bson >= 3.1.0"
+      "MongoDB.Bson >= 3.1.0",
+      "iron-revolution-center-api.Models >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -156,7 +175,11 @@
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\juand\\OneDrive\\Escritorio\\iron-revolution-center\\iron-revolution-center-api\\iron-revolution-center-api.Models\\iron-revolution-center-api.Models.csproj": {
+              "projectPath": "C:\\Users\\juand\\OneDrive\\Escritorio\\iron-revolution-center\\iron-revolution-center-api\\iron-revolution-center-api.Models\\iron-revolution-center-api.Models.csproj"
+            }
+          }
         }
       },
       "warningProperties": {
