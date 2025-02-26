@@ -17,6 +17,7 @@ namespace iron_revolution_center_api.Data.Service
         private readonly IMongoDatabase _mongoDatabase;
         private readonly IMongoCollection<MembershipsModel> _membershipCollection;
         private readonly IMongoCollection<InsertMembershipDTO> _insertMembershipCollection;
+        private readonly IMongoCollection<ClientsModel> _clientsCollection;
 
         // method to exclude _id field
         private static ProjectionDefinition<MembershipsModel> ExcludeIdProjection()
@@ -29,6 +30,7 @@ namespace iron_revolution_center_api.Data.Service
             _mongoDatabase = mongoDatabase;
             _membershipCollection = _mongoDatabase.GetCollection<MembershipsModel>("Memberships");
             _insertMembershipCollection = _mongoDatabase.GetCollection<InsertMembershipDTO>("Memberships");
+            _clientsCollection = _mongoDatabase.GetCollection<ClientsModel>("Clients");
         }
         #endregion
 
@@ -39,7 +41,7 @@ namespace iron_revolution_center_api.Data.Service
             {
                 // check membership name
                 var nameIsAlreadyUsed = await _membershipCollection
-                    .CountDocumentsAsync(membership => membership.Name == name);
+                    .CountDocumentsAsync(membership => membership.Nombre == name);
 
                 // validate existence
                 return nameIsAlreadyUsed > 0;
@@ -55,11 +57,29 @@ namespace iron_revolution_center_api.Data.Service
             {
                 // check membership identification
                 var IDExists = await _membershipCollection
-                    .CountDocumentsAsync(membership => membership.Membership_ID == membershipID);
+                    .CountDocumentsAsync(membership => membership.Membresia_ID == membershipID);
 
                 // validate existence
                 return IDExists > 0;
             } catch {
+                // if not in used
+                return false;
+            }
+        }
+
+        private async Task<bool> ValidateClientNIP(string NIP)
+        {
+            try
+            {
+                // check client 
+                var clientExists = await _clientsCollection
+                    .CountDocumentsAsync(client => client.NIP == NIP);
+
+                // validate existence
+                return clientExists > 0;
+            }
+            catch
+            {
                 // if not in used
                 return false;
             }
@@ -83,39 +103,15 @@ namespace iron_revolution_center_api.Data.Service
         }
         #endregion
 
-        #region GetMembershipByID
-        public async Task<IEnumerable<MembershipsModel>> GetMembershipByID(string membershipID)
-        {
-            if (string.IsNullOrEmpty(membershipID)) // field verification
-                throw new ArgumentException($"El ID no puede estar vacío. {nameof(membershipID)}");
-            if (await ValidateMembershipID(membershipID) == false) // field verification
-                throw new ArgumentException($"El ID: {membershipID} no existe.");
-            try
-            {
-                // get the collection
-                return await _membershipCollection
-                    .Find(membership => membership.Membership_ID == membershipID)
-                    .Project<MembershipsModel>(ExcludeIdProjection())
-                    .ToListAsync();
-            } catch (MongoException ex) {
-                // in case of error
-                throw new InvalidOperationException($"Error al mostrar membresía. {ex}");
-            } catch (ArgumentException ex) {
-                // in case of error
-                throw new ArgumentException($"Error: {ex}");
-            }
-        }
-        #endregion
-
         #region InsertMembership
         public async Task<InsertMembershipDTO> InsertMembership(InsertMembershipDTO membershipDTO)
         {
-            if (string.IsNullOrEmpty(membershipDTO.Name)) // field verification
-                throw new ArgumentException($"El nombre no puede estar vacío. {nameof(membershipDTO.Name)}");
-            if (await ValidateMembershipName(membershipDTO.Name))
+            if (string.IsNullOrEmpty(membershipDTO.Nombre)) // field verification
+                throw new ArgumentException($"El nombre no puede estar vacío. {nameof(membershipDTO.Nombre)}");
+            if (await ValidateMembershipName(membershipDTO.Nombre)) // field verification
                 throw new ArgumentException($"El nombre de membresía esta en uso.");
-            if (membershipDTO.Duration < 0) // field verification
-                throw new ArgumentException($"La duracion no puede ser negativo. {nameof(membershipDTO.Name)}");
+            if (membershipDTO.Duracion <= 0) // field verification
+                throw new ArgumentException($"La duracion no puede ser menor o igual a 0. {nameof(membershipDTO.Nombre)}");
             try
             {
                 // generate a unique identification
@@ -129,17 +125,17 @@ namespace iron_revolution_center_api.Data.Service
                 // check if identification is already used
                 while (await ValidateMembershipID(id) == true);
 
-                // insert model
+                // insert membership
                 var newMembership = new InsertMembershipDTO
                 {
-                    Membership_ID = id,
-                    Name = membershipDTO.Name,
-                    Duration = membershipDTO.Duration
+                    Membresia_ID = id,
+                    Nombre = membershipDTO.Nombre,
+                    Duracion = membershipDTO.Duracion
                 };
 
                 // check if is not null
                 if (newMembership == null)
-                    throw new Exception($"Inserción fallida.");
+                    throw new ArgumentException($"Inserción fallida.");
 
                 // insert
                 await _insertMembershipCollection.InsertOneAsync(newMembership);
@@ -148,13 +144,10 @@ namespace iron_revolution_center_api.Data.Service
                 return newMembership;
             } catch (MongoException ex) {
                 // in case of error
-                throw new InvalidOperationException($"Error al registrar membresía. {ex}");
+                throw new InvalidOperationException($"Error al insertar membresía. {ex}");
             } catch (ArgumentException ex) {
                 // in case of error 
                 throw new ArgumentException($"Error: {ex}");
-            } catch (Exception ex) {
-                // in case of error
-                throw new Exception($"Error: {ex}");
             }
         }
         #endregion
@@ -164,10 +157,10 @@ namespace iron_revolution_center_api.Data.Service
         {
             if (string.IsNullOrEmpty(membershipID)) // field verification
                 throw new ArgumentException($"El ID no puede estar vacío. {nameof(membershipID)}");
-            if (membershipDTO.Duration < 0 ) // field verification
-                throw new ArgumentException($"La duracion no puede ser menor o igual a 0. {nameof(membershipDTO.Duration)}");
-            if (await ValidateMembershipID(membershipID) == false) // field verification
+            if (!await ValidateMembershipID(membershipID)) // field verification
                 throw new ArgumentException($"El ID {membershipID} no existe.");
+            if (membershipDTO.Duracion <= 0 ) // field verification
+                throw new ArgumentException($"La duracion no puede ser menor o igual a 0. {nameof(membershipDTO.Duracion)}");
             try
             {
                 // create update definitions
@@ -175,16 +168,16 @@ namespace iron_revolution_center_api.Data.Service
                 var updateDefinitions = new List<UpdateDefinition<MembershipsModel>>();
 
                 // modify not null field
-                if (!string.IsNullOrEmpty(membershipDTO.Name)) // name
+                if (!string.IsNullOrEmpty(membershipDTO.Nombre)) // name
                     updateDefinitions.Add(updateBuilder
-                                     .Set(membership => membership.Name, membershipDTO.Name));
-                if (membershipDTO.Duration.HasValue) // duration
+                                     .Set(membership => membership.Nombre, membershipDTO.Nombre));
+                if (membershipDTO.Duracion.HasValue) // duration
                     updateDefinitions.Add(updateBuilder
-                                     .Set(membership => membership.Duration, membershipDTO.Duration));
+                                     .Set(membership => membership.Duracion, membershipDTO.Duracion));
 
                 // verification
                 if (!updateDefinitions.Any())
-                    throw new Exception("No se proporcionaron campos válidos para modificar.");
+                    throw new ArgumentException("No se proporcionaron campos válidos para modificar.");
 
                 // combine to a single
                 var combine = updateBuilder.Combine(updateDefinitions);
@@ -192,12 +185,12 @@ namespace iron_revolution_center_api.Data.Service
                 // modify
                 var filter = Builders<MembershipsModel>
                     .Filter
-                    .Eq(membership => membership.Membership_ID, membershipID);
+                    .Eq(membership => membership.Membresia_ID, membershipID);
                 var update = await _membershipCollection
                     .UpdateOneAsync(filter, combine);
                 // check if the update was successful
                 if (update.ModifiedCount == 0)
-                    throw new Exception("Error al modificar membresía.");
+                    throw new ArgumentException("Error al modificar membresía.");
 
                 // find membership
                 MembershipsModel membership = await _membershipCollection
@@ -209,13 +202,10 @@ namespace iron_revolution_center_api.Data.Service
                 return membership;
             } catch (MongoException ex) {
                 // in case of erro
-                throw new InvalidOperationException($"Error al modificar membresía con el ID {membershipID}. {ex}");
+                throw new InvalidOperationException($"Error al modificar membresía con el ID: {membershipID}. {ex}");
             } catch (ArgumentException ex) {
                 // in case of error
                 throw new ArgumentException($"Error: {ex}");
-            } catch (Exception ex) {
-                // in case of error
-                throw new Exception($"Error: {ex}");
             }
         }
         #endregion
@@ -225,23 +215,23 @@ namespace iron_revolution_center_api.Data.Service
         {
             if (string.IsNullOrEmpty(membershipID)) // field verification
                 throw new ArgumentException($"El ID no puede estar vacío. {nameof(membershipID)}");
-            if (await ValidateMembershipID(membershipID) == false) // field verification
-                throw new ArgumentException($"El ID {membershipID} no existe.");
+            if (!await ValidateMembershipID(membershipID)) // field verification
+                throw new ArgumentException($"El ID: {membershipID} no existe.");
             try
             {
                 // membership
                 MembershipsModel membership = await _membershipCollection
-                    .Find(membership => membership.Membership_ID == membershipID)
+                    .Find(membership => membership.Membresia_ID == membershipID)
                     .Project<MembershipsModel>(ExcludeIdProjection())
                     .FirstOrDefaultAsync();
 
                 // delete membership
                 var delete = await _membershipCollection
-                    .DeleteOneAsync(membership => membership.Membership_ID == membershipID);
+                    .DeleteOneAsync(membership => membership.Membresia_ID == membershipID);
 
                 // check 
                 if (delete.DeletedCount == 0)
-                    throw new Exception("Error al eliminar membresía.");
+                    throw new ArgumentException("Error al eliminar membresía.");
 
                 // return membership
                 return membership;
@@ -251,9 +241,69 @@ namespace iron_revolution_center_api.Data.Service
             } catch (ArgumentException ex) {
                 // in case of error
                 throw new ArgumentException($"Error: {ex}");
-            } catch (Exception ex) {
+            }
+        }
+        #endregion
+
+        #region AssignMembership
+        public async Task<ClientsModel> AssignMembership(string NIP, string membershipID)
+        {
+            if (string.IsNullOrEmpty(NIP)) // field validation
+                throw new ArgumentException($"El NIP no puede estar vacío. {nameof(NIP)}");
+            if (!await ValidateClientNIP(NIP)) // field validation
+                throw new ArgumentException($"El NIP: {NIP} no existe.");
+            if (string.IsNullOrEmpty(membershipID)) // field validation
+                throw new ArgumentException($"El ID no puede estar vacío. {nameof(membershipID)}");
+            if (!await ValidateMembershipID(membershipID)) // field validation
+                throw new ArgumentException($"La membresía con ID: {membershipID} no existe.");
+            try
+            {
+                // get client
+                var client = await _clientsCollection
+                    .Find(client => client.NIP == NIP)
+                    .FirstOrDefaultAsync();
+
+                // get membership
+                var membership = await _membershipCollection
+                    .Find(membership => membership.Membresia_ID == membershipID)
+                    .FirstOrDefaultAsync();
+
+                // assignament
+                var assignament = new ClientsModel
+                {
+                    Membresia = membershipID,
+                    Fecha_Inicio = DateOnly.FromDateTime(DateTime.Now),
+                    Fecha_Fin = DateOnly.FromDateTime(DateTime.Now).AddDays(membership.Duracion),
+                    Estado = true
+                };
+
+                // check if is not null
+                if (assignament == null)
+                    throw new ArgumentException("Asignación fallida.");
+
+                // assign 
+                var assign = Builders<ClientsModel>.Update
+                    .Set(client => client.Membresia, membershipID)
+                    .Set(client => client.Fecha_Inicio, DateOnly.FromDateTime(DateTime.Now))
+                    .Set(client => client.Fecha_Fin, DateOnly.FromDateTime(DateTime.Now).AddDays(membership.Duracion))
+                    .Set(client => client.Estado, true);
+
+                // update
+                await _clientsCollection
+                    .UpdateOneAsync(client => client.NIP == NIP, assign);
+
+                // client information
+                var clientWithMembership = await _clientsCollection
+                    .Find(client => client.NIP == NIP)
+                    .FirstOrDefaultAsync();
+
+                return clientWithMembership;
+            } catch (MongoException ex) {
                 // in case of error
-                throw new Exception($"Error: {ex}");
+                throw new InvalidOperationException($"Error al al asignar una membresía al cliente. {ex}");
+            } catch (ArgumentException ex) {
+                // in case of error
+                throw new ArgumentException($"Error: {ex}");
             }
         }
         #endregion

@@ -17,9 +17,10 @@ namespace iron_revolution_center_api.Data.Service
         #region MongoDB Configuration
         private readonly IMongoDatabase _mongoDatabase;
         private readonly IMongoCollection<Activity_CenterModel> _activityCenterCollection;
+        private readonly IMongoCollection<EntryClientDTO> _EntryClientCollection;
+        private readonly IMongoCollection<ExitClientDTO> _ExitClientCollection;
         private readonly IMongoCollection<ClientsModel> _clientsCollection;
         private readonly IMongoCollection<Branches_OfficeModel> _branchesOfficeCollection;
-        private readonly IMongoCollection<MembershipAssignmentModel> _membershipCollection;
 
         // method to exclude _id field
         private static ProjectionDefinition<Activity_CenterModel> ExcludeIdProjection()
@@ -31,9 +32,9 @@ namespace iron_revolution_center_api.Data.Service
         {
             _mongoDatabase = mongoDatabase;
             _activityCenterCollection = _mongoDatabase.GetCollection<Activity_CenterModel>("Activity_Center");
+            _EntryClientCollection = _mongoDatabase.GetCollection<EntryClientDTO>("Activity_Center");
             _clientsCollection = _mongoDatabase.GetCollection<ClientsModel>("Clients");
             _branchesOfficeCollection = _mongoDatabase.GetCollection<Branches_OfficeModel>("Branches_Office");
-            _membershipCollection = _mongoDatabase.GetCollection<MembershipAssignmentModel>("MembershipAssignments");
         }
         #endregion
 
@@ -42,28 +43,27 @@ namespace iron_revolution_center_api.Data.Service
         {
             try
             {
-                // 
-                var membership = await _membershipCollection
-                    .Find(membership => membership.NIP == NIP)
+                // get client
+                var client = await _clientsCollection
+                    .Find(client => client.NIP == NIP)
                     .FirstOrDefaultAsync();
 
-                // 
-                if (membership == null)
-                    throw new ArgumentException("Cliente no encontrado."); // 
+                // check 
+                if (client == null)
+                    throw new ArgumentException("Cliente no encontrado.");
 
-                //
-                if (membership.Status == false)
+                // check 
+                if (client.Estado == false)
                     throw new ArgumentException("Estado finalizado.");
 
-                //
-                var nowUtc = DateTime.UtcNow;
-                if (membership.End_Date < nowUtc)
+                // check 
+                var DateNow = DateOnly.FromDateTime(DateTime.Now);
+                if (client.Fecha_Fin < DateNow)
                     throw new ArgumentException("Membresía finalizada.");
 
-                // 
                 return true;
             } catch {
-                //
+                // in case of error
                 return false;
             }
         }
@@ -102,7 +102,7 @@ namespace iron_revolution_center_api.Data.Service
         #endregion
 
         #region ListActivity
-        public async Task<IEnumerable<Activity_CenterDetailsDTO>> ListActivity()
+        public async Task<IEnumerable<Activity_CenterModel>> ListActivity()
         {
             try
             {
@@ -122,16 +122,16 @@ namespace iron_revolution_center_api.Data.Service
                     .ToListAsync();
 
                 //
-                var activityCenterDetails = activities.Select(activity => new Activity_CenterDetailsDTO
+                var activityCenter = activities.Select(activity => new Activity_CenterModel
                 {
-                    Client = clients.FirstOrDefault(client => client.NIP == activity.NIP), 
-                    date_entry = activity.date_entry,
-                    date_exit = activity.date_exit,
-                    branch_office = branches.FirstOrDefault(branchOffice => branchOffice.Branche_ID == activity.branch_office) 
+                    Cliente = clients.FirstOrDefault(client => client.NIP == activity.Cliente), 
+                    Entrada = activity.Entrada,
+                    Salida = activity.Salida,
+                    Sucursal = branches.FirstOrDefault(branchOffice => branchOffice.Branche_ID == activity.Sucursal) 
                 }).ToList();
 
                 //
-                return activityCenterDetails;
+                return activityCenter;
             } catch (MongoException ex) {
                 // in case of error
                 throw new InvalidOperationException($"Error al mostrar actividad. {ex}");
@@ -142,34 +142,37 @@ namespace iron_revolution_center_api.Data.Service
         #region RegisterEntry
         public async Task<bool> RegisterEntry(string NIP, string branchOffice)
         {
-            if (string.IsNullOrEmpty(NIP)) //
+            if (string.IsNullOrEmpty(NIP)) // field verification
                 throw new ArgumentException($"El NIP no puede estar vacío. {nameof(NIP)}");
-            if (await ValidateClientNIP(NIP) == false) // field verification
+            if (!await ValidateClientNIP(NIP)) // field verification
                 throw new ArgumentException($"El NIP: {NIP} no existe.");
-            if (string.IsNullOrEmpty(branchOffice)) //
+            if (string.IsNullOrEmpty(branchOffice)) // field verification
                 throw new ArgumentException($"La sucursal no puede estar vacío. {nameof(branchOffice)}");
-            if (!await ValidateBranchOfficeID(branchOffice))
-                throw new ArgumentException($"El ID: {nameof(branchOffice)} no existe.");
+            if (!await ValidateBranchOfficeID(branchOffice)) // field verification
+                throw new ArgumentException($"La sucursal con el ID: {nameof(branchOffice)} no existe.");
             try
             {
-                // 
+                // verifica si el cliente es apto para su ingreso
                 bool client = await IsClient(NIP);
                 if (!client)
                     throw new ArgumentException("No apto para entrar.");
 
-                // 
-                var clientEnty = new Activity_CenterModel
+                // client entry
+                var clientEnty = new EntryClientDTO
                 {
-                    NIP = NIP,
-                    date_entry = DateTime.UtcNow,
-                    date_exit = DateTime.UtcNow.AddHours(24),
-                    branch_office = branchOffice
+                    Cliente = NIP,
+                    Entrada = DateTime.UtcNow,
+                    Salida = DateTime.UtcNow.AddHours(24),
+                    Sucursal = branchOffice
                 };
 
-                // 
-                await _activityCenterCollection.InsertOneAsync(clientEnty);
+                //
+                if (clientEnty == null)
+                    throw new ArgumentException("Registro fallido.");
 
-                // 
+                // register
+                await _EntryClientCollection.InsertOneAsync(clientEnty);
+
                 return true;
             } catch (MongoException ex) {
                 // in case of error
@@ -186,7 +189,7 @@ namespace iron_revolution_center_api.Data.Service
         {
             if (string.IsNullOrEmpty(NIP)) //
                 throw new ArgumentException($"El NIP no puede estar vacío. {nameof(NIP)}");
-            if (await ValidateClientNIP(NIP) == false) // field verification
+            if (!await ValidateClientNIP(NIP)) // field verification
                 throw new ArgumentException($"El NIP: {NIP} no existe.");
             try
             {

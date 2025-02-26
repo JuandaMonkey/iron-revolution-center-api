@@ -8,6 +8,8 @@ using System.Threading.Tasks;
 using iron_revolution_center_api.Data.Interface;
 using iron_revolution_center_api.DTOs.Client;
 using iron_revolution_center_api.Models;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http.Internal;
 using MongoDB.Bson;
 using MongoDB.Driver;
 using static MongoDB.Driver.WriteConcern;
@@ -22,6 +24,7 @@ namespace iron_revolution_center_api.Data.Service
         private readonly IMongoCollection<ClientsModel> _clientsCollection;
         private readonly IMongoCollection<RegisterClientDTO> _registerClientCollection;
         private readonly IMongoCollection<ModifyClientDTO> _modifyClientCollection;
+        private readonly IMongoCollection<MembershipsModel> _membersCollection;
 
         // method to exclude _id field
         private static ProjectionDefinition<ClientsModel> ExcludeIdProjection()
@@ -35,6 +38,7 @@ namespace iron_revolution_center_api.Data.Service
             _clientsCollection = _mongoDatabase.GetCollection<ClientsModel>("Clients");
             _registerClientCollection = _mongoDatabase.GetCollection<RegisterClientDTO>("Clients");
             _modifyClientCollection = _mongoDatabase.GetCollection<ModifyClientDTO>("Clients");
+            _membersCollection = _mongoDatabase.GetCollection<MembershipsModel>("Memberships");
         }
         #endregion
 
@@ -61,7 +65,7 @@ namespace iron_revolution_center_api.Data.Service
             {
                 // check client number
                 var phoneIsAlreadyUsed = await _clientsCollection
-                    .CountDocumentsAsync(client => client.Phone == phone);
+                    .CountDocumentsAsync(client => client.Celular == phone);
 
                 // validate existence
                 return phoneIsAlreadyUsed > 0;
@@ -91,19 +95,40 @@ namespace iron_revolution_center_api.Data.Service
         #endregion
 
         #region GetClientByNIP
-        public async Task<IEnumerable<ClientsModel>> GetClientByNIP(string NIP)
+        public async Task<ClientsModel> GetClientByNIP(string NIP)
         {
             if (string.IsNullOrEmpty(NIP)) // field verification
-                throw new ArgumentException("El NIP no puede estar vacío.", nameof(NIP));
-            if (await ValidateClientNIP(NIP) == false) // field verification
+                throw new ArgumentException($"El NIP no puede estar vacío. {nameof(NIP)}");
+            if (!await ValidateClientNIP(NIP)) // field verification
                 throw new ArgumentException($"El NIP: {NIP} no existe.");
             try
             {
-                // get clients
-                return await _clientsCollection
-                    .Find(Client => Client.NIP == NIP)
+                // get client
+                var client = await _clientsCollection
+                    .Find(client => client.NIP == NIP)
                     .Project<ClientsModel>(ExcludeIdProjection())
-                    .ToListAsync();
+                    .FirstOrDefaultAsync();
+                // get membership
+                var membership = await _membersCollection
+                    .Find(membership => membership.Membresia_ID == client.Membresia)
+                    .FirstOrDefaultAsync();
+
+                // client
+                var clientInformation = new ClientsModel
+                {
+                    NIP = client.NIP,
+                    Foto = client.Foto,
+                    Nombre_Completo = client.Nombre_Completo,
+                    Celular = client.Celular,
+                    Observacion = client.Observacion,
+                    Membresia = membership.Nombre,
+                    Fecha_Inicio = client.Fecha_Inicio,
+                    Fecha_Fin = client.Fecha_Fin,
+                    Estado = client.Estado
+
+                };
+
+                return clientInformation;
             } catch (MongoException ex) {
                 // in case of error
                 throw new InvalidOperationException($"Error al al mostrar cliente. {ex}");
@@ -117,12 +142,12 @@ namespace iron_revolution_center_api.Data.Service
         #region RegisterClient
         public async Task<RegisterClientDTO> RegisterClient(RegisterClientDTO clientDTO)
         {
-            if (string.IsNullOrEmpty(clientDTO.Full_Name)) // field verification
-                throw new ArgumentException($"El nombre no puede estar vacío. {nameof(clientDTO.Full_Name)}");
-            if (string.IsNullOrEmpty(clientDTO.Phone)) // field verification
-                throw new ArgumentException($"El número de celular no puede estar vacío. {nameof(clientDTO.Phone)}");
-            if (await ValidateClientPhone(clientDTO.Phone) == true) // fiel verification
-                throw new ArgumentException($"Número de celular: {clientDTO.Phone} ya en uso");
+            if (string.IsNullOrEmpty(clientDTO.Nombre_Completo)) // field verification
+                throw new ArgumentException($"El nombre no puede estar vacío. {nameof(clientDTO.Nombre_Completo)}");
+            if (string.IsNullOrEmpty(clientDTO.Celular)) // field verification
+                throw new ArgumentException($"El número de celular no puede estar vacío. {nameof(clientDTO.Celular)}");
+            if (await ValidateClientPhone(clientDTO.Celular) == true) // fiel verification
+                throw new ArgumentException($"Número de celular: {clientDTO.Celular} ya en uso");
             try
             {
                 // generate a unique nip
@@ -136,15 +161,15 @@ namespace iron_revolution_center_api.Data.Service
                 var newClient = new RegisterClientDTO
                 {
                     NIP = NIP,
-                    Photo = clientDTO.Photo,
-                    Full_Name = clientDTO.Full_Name,
-                    Phone = clientDTO.Phone,
-                    Observation = clientDTO.Observation
+                    Foto = clientDTO.Foto,
+                    Nombre_Completo = clientDTO.Nombre_Completo,
+                    Celular = clientDTO.Celular,
+                    Observacion = clientDTO.Observacion
                 };
 
                 // check if is not null
                 if (newClient == null)
-                    throw new Exception($"Registro fallido.");
+                    throw new ArgumentException($"Registro fallido.");
 
                 // register
                 await _registerClientCollection.InsertOneAsync(newClient);
@@ -157,9 +182,6 @@ namespace iron_revolution_center_api.Data.Service
             } catch (ArgumentException ex) {
                 // in case of error 
                 throw new ArgumentException($"Error: {ex}");
-            } catch (Exception ex) {
-                // in case of error 
-                throw new Exception($"Error: {ex}");
             }
         }
         #endregion
@@ -169,7 +191,7 @@ namespace iron_revolution_center_api.Data.Service
         {
             if (string.IsNullOrEmpty(NIP)) // field verification
                 throw new ArgumentException("El NIP no puede estar vacío.", nameof(NIP));
-            if (await ValidateClientNIP(NIP) == false) // field verification
+            if (!await ValidateClientNIP(NIP)) // field verification
                 throw new ArgumentException($"El NIP: {NIP} no existe.");
             try
             {
@@ -178,22 +200,26 @@ namespace iron_revolution_center_api.Data.Service
                 var updateDefinitions = new List<UpdateDefinition<ClientsModel>>();
 
                 // modify not null field
-                if (!string.IsNullOrEmpty(clientDTO.Photo)) // photo
-                    updateDefinitions.Add(updateBuilder.Set(client => client.Photo, clientDTO.Photo));
-                if (!string.IsNullOrEmpty(clientDTO.Full_Name)) // full name
-                    updateDefinitions.Add(updateBuilder.Set(client => client.Full_Name, clientDTO.Full_Name));
-                if (!string.IsNullOrEmpty(clientDTO.Phone)) // phone
+                if (!string.IsNullOrEmpty(clientDTO.Foto)) // photo
+                    updateDefinitions.Add(updateBuilder
+                                     .Set(client => client.Foto, clientDTO.Foto));
+                if (!string.IsNullOrEmpty(clientDTO.Nombre_Completo)) // full name
+                    updateDefinitions.Add(updateBuilder
+                                     .Set(client => client.Nombre_Completo, clientDTO.Nombre_Completo));
+                if (!string.IsNullOrEmpty(clientDTO.Celular)) // phone
                 {
-                    if (await ValidateClientPhone(clientDTO.Phone))
-                        throw new ArgumentException($"El número de teléfono: {clientDTO.Phone} ya está en uso.");
-                    updateDefinitions.Add(updateBuilder.Set(client => client.Phone, clientDTO.Phone));
+                    if (await ValidateClientPhone(clientDTO.Celular))
+                        throw new ArgumentException($"Número de celular: {clientDTO.Celular} ya en uso");
+                    updateDefinitions.Add(updateBuilder
+                                     .Set(client => client.Celular, clientDTO.Celular));
                 }
-                if (!string.IsNullOrEmpty(clientDTO.Observation)) // observation
-                    updateDefinitions.Add(updateBuilder.Set(client => client.Observation, clientDTO.Observation));
+                if (!string.IsNullOrEmpty(clientDTO.Observacion)) // observation
+                    updateDefinitions.Add(updateBuilder
+                                     .Set(client => client.Observacion, clientDTO.Observacion));
 
                 // verification
                 if (!updateDefinitions.Any())
-                    throw new Exception("No se proporcionaron campos válidos para modificar.");
+                    throw new ArgumentException("No se proporcionaron campos válidos para modificar.");
 
                 // combine to a single
                 var combine = updateBuilder.Combine(updateDefinitions);
@@ -207,7 +233,7 @@ namespace iron_revolution_center_api.Data.Service
                     .UpdateOneAsync(filter, combine);
                 // check if the update was successful
                 if (update.ModifiedCount == 0)
-                    throw new Exception("Error al modificar cliente.");
+                    throw new ArgumentException("Error al modificar cliente.");
 
                 // find client
                 ClientsModel client = await _clientsCollection
@@ -219,13 +245,10 @@ namespace iron_revolution_center_api.Data.Service
                 return client;
             } catch (MongoException ex) {
                 // in case of error
-                throw new InvalidOperationException($"Error al modificar cliente con el NIP {NIP}. {ex}");
+                throw new InvalidOperationException($"Error al modificar cliente con el NIP: {NIP}. {ex}");
             } catch (ArgumentException ex) {
                 // in case of error
                 throw new ArgumentException($"Error: {ex}");
-            } catch (Exception ex) {
-                // in case of error
-                throw new Exception($"Error: {ex}");
             }
         }
         #endregion
@@ -234,8 +257,8 @@ namespace iron_revolution_center_api.Data.Service
         public async Task<ClientsModel> DeleteClient(string NIP)
         {
             if (string.IsNullOrEmpty(NIP)) // field verification
-                throw new ArgumentException("El NIP no puede estar vacío.", nameof(NIP));
-            if (await ValidateClientNIP(NIP) == false) // field verification
+                throw new ArgumentException($"El NIP no puede estar vacío. {nameof(NIP)}");
+            if (!await ValidateClientNIP(NIP)) // field verification
                 throw new ArgumentException($"El NIP: {NIP} no existe.");
             try
             {
@@ -251,7 +274,7 @@ namespace iron_revolution_center_api.Data.Service
 
                 // check
                 if (delete.DeletedCount == 0)
-                    throw new Exception("Error al eliminar cliente.");
+                    throw new ArgumentException("Error al eliminar cliente.");
 
                 // return of result of elimination
                 return client;
@@ -261,9 +284,6 @@ namespace iron_revolution_center_api.Data.Service
             } catch (ArgumentException ex) {
                 // in case of error
                 throw new ArgumentException($"Error: {ex}");
-            } catch (Exception ex) {
-                // in case of error
-                throw new Exception($"Error: {ex}");
             }
         }
         #endregion

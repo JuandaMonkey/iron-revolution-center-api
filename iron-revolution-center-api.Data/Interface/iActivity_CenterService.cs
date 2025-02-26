@@ -1,5 +1,4 @@
 ﻿using iron_revolution_center_api.Data.Service;
-using iron_revolution_center_api.DTOs.Activity_Center;
 using iron_revolution_center_api.Models;
 using System;
 using System.Collections.Generic;
@@ -11,7 +10,7 @@ namespace iron_revolution_center_api.Data.Interface
 {
     public interface iActivity_CenterService
     {
-        public Task<IEnumerable<Activity_CenterDetailsDTO>> ListActivity();
+        public Task<IEnumerable<Activity_CenterModel>> ListActivity();
 
         public Task<bool> RegisterEntry(string NIP, string branchOffice);
 

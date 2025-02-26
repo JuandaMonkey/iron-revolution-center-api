@@ -15,9 +15,6 @@ namespace iron_revolution_center_api.Data.Interface
         // list of memberships
         public Task<IEnumerable<MembershipsModel>> ListMemberships();
 
-        // get membership by identification
-        public Task<IEnumerable<MembershipsModel>> GetMembershipByID(string membershipID);
-
         // insert membership
         public Task<InsertMembershipDTO> InsertMembership(InsertMembershipDTO membershipDTo);
 
@@ -26,5 +23,8 @@ namespace iron_revolution_center_api.Data.Interface
 
         // delete membership
         public Task<MembershipsModel> DeleteMembership(string membershipID);
+
+        // assing membership 
+        public Task<ClientsModel> AssignMembership(string NIP, string membershipID);
     }
 }

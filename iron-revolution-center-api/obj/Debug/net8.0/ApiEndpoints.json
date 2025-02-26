@@ -111,8 +111,24 @@
   },
   {
     "ContainingType": "iron_revolution_center_api.Controllers.ClientsController",
+    "Method": "GetClientByNIP",
+    "RelativePath": "api/Clients/Consultar-Cliente-Por-NIP",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "NIP",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "iron_revolution_center_api.Controllers.ClientsController",
     "Method": "DeleteClient",
-    "RelativePath": "api/Clients/Delete-Client",
+    "RelativePath": "api/Clients/Eliminar-Cliente",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
@@ -127,24 +143,8 @@
   },
   {
     "ContainingType": "iron_revolution_center_api.Controllers.ClientsController",
-    "Method": "GetClientByNIP",
-    "RelativePath": "api/Clients/Get-Client-By-NIP",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "NIP",
-        "Type": "System.String",
-        "IsRequired": false
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "iron_revolution_center_api.Controllers.ClientsController",
     "Method": "ListClients",
-    "RelativePath": "api/Clients/Lists-Clients",
+    "RelativePath": "api/Clients/Listar-Clientes",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -154,7 +154,7 @@
   {
     "ContainingType": "iron_revolution_center_api.Controllers.ClientsController",
     "Method": "ModifyClient",
-    "RelativePath": "api/Clients/Modify-Client",
+    "RelativePath": "api/Clients/Modificar-Cliente",
     "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
@@ -175,11 +175,16 @@
   {
     "ContainingType": "iron_revolution_center_api.Controllers.ClientsController",
     "Method": "RegisterClient",
-    "RelativePath": "api/Clients/Register-Client",
+    "RelativePath": "api/Clients/Registrar-Cliente",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
+      {
+        "Name": "photo",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
+      },
       {
         "Name": "clientDTO",
         "Type": "iron_revolution_center_api.DTOs.Client.RegisterClientDTO",
@@ -254,7 +259,7 @@
   {
     "ContainingType": "iron_revolution_center_api.Controllers.MembershipController",
     "Method": "DeleteMembership",
-    "RelativePath": "api/Membership/Delete-Membership",
+    "RelativePath": "api/Membership/Eliminar-Membres\u00EDa",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
@@ -270,7 +275,7 @@
   {
     "ContainingType": "iron_revolution_center_api.Controllers.MembershipController",
     "Method": "InsertMembership",
-    "RelativePath": "api/Membership/Insert-Membership",
+    "RelativePath": "api/Membership/Insertar-Membres\u00EDa",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -286,7 +291,7 @@
   {
     "ContainingType": "iron_revolution_center_api.Controllers.MembershipController",
     "Method": "ListMemberships",
-    "RelativePath": "api/Membership/List-Memberships",
+    "RelativePath": "api/Membership/Listar-Membres\u00EDas",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -296,7 +301,7 @@
   {
     "ContainingType": "iron_revolution_center_api.Controllers.MembershipController",
     "Method": "ModifyMembership",
-    "RelativePath": "api/Membership/Modify-Membership",
+    "RelativePath": "api/Membership/Modificar-Membres\u00EDa",
     "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,

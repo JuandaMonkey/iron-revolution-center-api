@@ -10,16 +10,10 @@ namespace iron_revolution_center_api.Models
 {
     public class Branches_OfficeModel
     {
-        [BsonId]
-        public ObjectId _id { get; set; } // _id
+        public string? Sucursal_ID { get; set; }  // identification
 
-        [BsonElement("Branche_ID")]
-        public string? Branche_ID { get; set; }  // identification
+        public string? Nombre { get; set; }  // name
 
-        [BsonElement("Name")]
-        public string? Name { get; set; }  // name
-
-        [BsonElement("Location")]
-        public string? Location { get; set; }  // location
+        public string? Ubicacion { get; set; }  // location
     }
 }

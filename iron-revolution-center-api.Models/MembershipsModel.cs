@@ -11,16 +11,10 @@ namespace iron_revolution_center_api.Models
     // db.Memberships
     public class MembershipsModel
     {
-        [BsonId]
-        public ObjectId _id { get; set; } // _id
+        public string? Membresia_ID { get; set; } // identification
 
-        [BsonElement("Membership_ID")]
-        public string? Membership_ID { get; set; } // identification
+        public string? Nombre { get; set; } // name membership
 
-        [BsonElement("Name")]
-        public string? Name { get; set; } // name membership
-
-        [BsonElement("Duration")]
-        public int Duration { get; set; } // duration membership
+        public int Duracion { get; set; } // duration membership
     }
 }

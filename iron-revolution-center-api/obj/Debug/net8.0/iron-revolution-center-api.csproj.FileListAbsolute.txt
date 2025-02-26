@@ -52,3 +52,5 @@ C:\Users\juand\OneDrive\Escritorio\iron-revolution-center\iron-revolution-center
 C:\Users\juand\OneDrive\Escritorio\iron-revolution-center\iron-revolution-center-api\iron-revolution-center-api\bin\Debug\net8.0\Microsoft.IdentityModel.Tokens.dll
 C:\Users\juand\OneDrive\Escritorio\iron-revolution-center\iron-revolution-center-api\iron-revolution-center-api\bin\Debug\net8.0\System.IdentityModel.Tokens.Jwt.dll
 C:\Users\juand\OneDrive\Escritorio\iron-revolution-center\iron-revolution-center-api\iron-revolution-center-api\obj\Debug\net8.0\iron-revolution-center-api.sourcelink.json
+C:\Users\juand\OneDrive\Escritorio\iron-revolution-center\iron-revolution-center-api\iron-revolution-center-api\bin\Debug\net8.0\Microsoft.Extensions.ObjectPool.dll
+C:\Users\juand\OneDrive\Escritorio\iron-revolution-center\iron-revolution-center-api\iron-revolution-center-api\bin\Debug\net8.0\Microsoft.Extensions.Options.dll

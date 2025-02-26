@@ -17,7 +17,40 @@
       "applicationUrl": "http://localhost:5210",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
+        "CONNECTION_STRING": "{
+  "$schema": "http://json.schemastore.org/launchsettings.json",
+  "iisSettings": {
+    "windowsAuthentication": false,
+    "anonymousAuthentication": true,
+    "iisExpress": {
+      "applicationUrl": "http://localhost:15554",
+      "sslPort": 44363
+    }
+  },
+  "profiles": {
+    "http": {
+      "commandName": "Project",
+      "dotnetRunMessages": true,
+      "launchBrowser": true,
+      "launchUrl": "swagger",
+      "applicationUrl": "http://localhost:5210",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development",
         "CONNECTION_STRING": "mongodb://localhost:27017/iron-revolution-center-db"
+      }
+    },
+    "IIS Express": {
+      "commandName": "IISExpress",
+      "launchBrowser": true,
+      "launchUrl": "swagger",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "CONNECTION_STRING": "mongodb://localhost:27017/iron-revolution-center-db"
+      }
+    }
+  }
+}
+"
       }
     },
     "IIS Express": {

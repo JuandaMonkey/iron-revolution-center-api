@@ -12,22 +12,22 @@ namespace iron_revolution_center_api.Models
     // db.clients
     public class ClientsModel
     {
-        [BsonId]
-        public ObjectId _id { get; set; } // _id
-
-        [BsonElement("NIP")]
         public string? NIP { get; set; } // identifier
 
-        [BsonElement("Photo")]
-        public string? Photo { get; set; }  // photo
+        public string? Foto { get; set; }  // photo
 
-        [BsonElement("Full_Name")]
-        public string? Full_Name { get; set; }  // full name
+        public string? Nombre_Completo { get; set; }  // full name
 
-        [BsonElement("Phone")]
-        public string? Phone { get; set; }  // phone
+        public string? Celular { get; set; }  // phone
 
-        [BsonElement("Observation")]
-        public string? Observation { get; set; }  // observation
+        public string? Observacion { get; set; }  // observation
+
+        public string? Membresia { get; set; } // membership
+
+        public DateOnly? Fecha_Inicio { get; set; } // date_start
+
+        public DateOnly? Fecha_Fin { get; set; } // date_end
+
+        public bool Estado { get; set; } // status
     }
 }

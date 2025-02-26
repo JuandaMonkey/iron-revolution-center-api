@@ -10,11 +10,9 @@ namespace iron_revolution_center_api.DTOs.Branch_Office
 {
     public class ModifyBranche_OfficeDTO
     {
-        [BsonElement("Name")]
         [StringLength(500, MinimumLength = 3, ErrorMessage = "El nombre de la sucursal debe tener entre 3 y 200 caracteres.")] // length
-        public string? Name { get; set; }  // name
+        public string? Nombre { get; set; }  // name
 
-        [BsonElement("Location")]
-        public string? Location { get; set; }  // location
+        public string? Ubicacion { get; set; }  // location
     }
 }

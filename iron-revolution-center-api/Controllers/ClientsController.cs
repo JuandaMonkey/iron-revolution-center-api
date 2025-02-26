@@ -16,7 +16,7 @@ namespace iron_revolution_center_api.Controllers
         }
 
         #region ListsClients
-        [HttpGet("Lists-Clients")]
+        [HttpGet("Listar-Clientes")]
         public async Task<IActionResult> ListClients()
         {
             try
@@ -34,7 +34,7 @@ namespace iron_revolution_center_api.Controllers
         #endregion
 
         #region GetClientByNIP
-        [HttpGet("Get-Client-By-NIP")]
+        [HttpGet("Consultar-Cliente-Por-NIP")]
         public async Task<IActionResult> GetClientByNIP([FromHeader] string NIP)
         {
             try
@@ -53,8 +53,8 @@ namespace iron_revolution_center_api.Controllers
         #endregion
 
         #region RegisterClient
-        [HttpPost("Register-Client")]
-        public async Task<IActionResult> RegisterClient([FromBody] RegisterClientDTO clientDTO)
+        [HttpPost("Registrar-Cliente")]
+        public async Task<IActionResult> RegisterClient([FromForm] RegisterClientDTO clientDTO)
         {
             try
             {
@@ -71,7 +71,7 @@ namespace iron_revolution_center_api.Controllers
         #endregion
 
         #region ModifyClient
-        [HttpPut("Modify-Client")]
+        [HttpPut("Modificar-Cliente")]
         public async Task<IActionResult> ModifyClient([FromHeader] string NIP, [FromBody] ModifyClientDTO clientDTO)
         {
             try
@@ -89,7 +89,7 @@ namespace iron_revolution_center_api.Controllers
         #endregion
 
         #region DeleteClient
-        [HttpDelete("Delete-Client")]
+        [HttpDelete("Eliminar-Cliente")]
         public async Task<IActionResult> DeleteClient([FromHeader] string NIP)
         {
             try

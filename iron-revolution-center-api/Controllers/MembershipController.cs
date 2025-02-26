@@ -2,6 +2,7 @@
 using iron_revolution_center_api.DTOs.Membership;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SignalR.Protocol;
+using Microsoft.AspNetCore.WebUtilities;
 using System.Diagnostics.Eventing.Reader;
 
 namespace iron_revolution_center_api.Controllers
@@ -17,7 +18,7 @@ namespace iron_revolution_center_api.Controllers
         }
 
         #region ListMemberships
-        [HttpGet("List-Memberships")]
+        [HttpGet("Listar-Membresías")]
         public async Task<IActionResult> ListMemberships()
         {
             try
@@ -27,34 +28,15 @@ namespace iron_revolution_center_api.Controllers
                 if (memberships != null)
                     return Ok(memberships);
                 else
-                    return
-                        NoContent();
+                    return NoContent();
             } catch (Exception ex) {
                 return StatusCode(500, $"Error: {ex.Message}");
             }
         }
         #endregion
 
-        #region GetMembershipByID
-        //[HttpGet("Get-Membership-By-ID")]
-        //public async Task<IActionResult> GetMembershipByID([FromHeader] string membershipID)
-        //{
-        //    try
-        //    {
-        //        var membership = await _membershipService.GetMembershipByID(membershipID);
-
-        //        if (membership != null)
-        //            return Ok(membership);
-        //        else
-        //            return NoContent();
-        //    } catch (Exception ex) {
-        //        return StatusCode(500, $"Error: {ex.Message}");
-        //    }
-        //}
-        #endregion
-
         #region InsertMembership
-        [HttpPost("Insert-Membership")]
+        [HttpPost("Insertar-Membresía")]
         public async Task<IActionResult> InsertMembership([FromBody] InsertMembershipDTO membershipDTO)
         {
             try
@@ -73,7 +55,7 @@ namespace iron_revolution_center_api.Controllers
         #endregion
 
         #region ModifyMembership
-        [HttpPut("Modify-Membership")]
+        [HttpPut("Modificar-Membresía")]
         public async Task<IActionResult> ModifyMembership([FromHeader] string membershipID, [FromBody] ModifyMembershipDTO membershipDTO)
         {
             try
@@ -91,7 +73,7 @@ namespace iron_revolution_center_api.Controllers
         #endregion
 
         #region DeleteMembership
-        [HttpDelete("Delete-Membership")]
+        [HttpDelete("Eliminar-Membresía")]
         public async Task<IActionResult> DeleteMembership([FromHeader] string membershipID)
         {
             try
@@ -105,7 +87,25 @@ namespace iron_revolution_center_api.Controllers
             } catch (Exception ex) {
                 return StatusCode(500, $"{ex.Message}");
             }
-        } 
+        }
+        #endregion
+
+        #region AssignMembership
+        [HttpDelete("Asignar-Membresía")]
+        public async Task<IActionResult> AssignMembership([FromHeader] string NIP, [FromHeader] string membershipID)
+        {
+            try
+            {
+                var membership = await _membershipService.AssignMembership(NIP, membershipID);
+
+                if (membership != null)
+                    return Ok(membership);
+                else
+                    return NoContent();
+            } catch (Exception ex) {
+                return StatusCode(500, $"{ex.Message}");
+            }
+        }
         #endregion
     }
 }

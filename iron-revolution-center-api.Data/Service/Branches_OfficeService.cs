@@ -18,6 +18,12 @@ namespace iron_revolution_center_api.Data.Service
         private IMongoCollection<InsertBranche_OfficeDTO> _insertBranchesOfficeCollection;
         private IMongoCollection<InsertBranche_OfficeDTO> _modifyBranchesOfficeCollection;
 
+        // method to exclude _id field
+        private static ProjectionDefinition<Branches_OfficeModel> ExcludeIdProjection()
+        {
+            return Builders<Branches_OfficeModel>.Projection.Exclude("_id");
+        }
+
         public Branches_OfficeService(IMongoDatabase mongoDatabase)
         {
             _mongoDatabase = mongoDatabase;
@@ -34,7 +40,7 @@ namespace iron_revolution_center_api.Data.Service
             {
                 // check branch office exists
                 var branchOfficeExists = await _branchesOfficeCollection
-                    .CountDocumentsAsync(branchOffice => branchOffice.Branche_ID == branchID);
+                    .CountDocumentsAsync(branchOffice => branchOffice.Sucursal_ID == branchID);
 
                 // validate existence
                 return branchOfficeExists > 0;
@@ -53,6 +59,7 @@ namespace iron_revolution_center_api.Data.Service
                 // get the collection branches office
                 return await _branchesOfficeCollection
                     .Find(FilterDefinition<Branches_OfficeModel>.Empty)
+                    .Project<Branches_OfficeModel>(ExcludeIdProjection())
                     .ToListAsync();
             } catch (MongoException ex) {
                 // in case of error
@@ -64,10 +71,10 @@ namespace iron_revolution_center_api.Data.Service
         #region RegisterBranch_Office
         public async Task<InsertBranche_OfficeDTO> RegisterBranch_Office(InsertBranche_OfficeDTO branchOfficeDTO)
         {
-            if (string.IsNullOrEmpty(branchOfficeDTO.Name)) // field verification
-                throw new ArgumentException($"El nombre no puede estar vacío. {nameof(branchOfficeDTO.Name)}");
-            if (string.IsNullOrEmpty(branchOfficeDTO.Location)) // field verification
-                throw new ArgumentException($"La ubicación no puede estar vacía. {nameof(branchOfficeDTO.Location)}");
+            if (string.IsNullOrEmpty(branchOfficeDTO.Nombre)) // field verification
+                throw new ArgumentException($"El nombre no puede estar vacío. {nameof(branchOfficeDTO.Nombre)}");
+            if (string.IsNullOrEmpty(branchOfficeDTO.Ubicacion)) // field verification
+                throw new ArgumentException($"La ubicación no puede estar vacía. {nameof(branchOfficeDTO.Ubicacion)}");
             try
             {
                 // generate a unique id

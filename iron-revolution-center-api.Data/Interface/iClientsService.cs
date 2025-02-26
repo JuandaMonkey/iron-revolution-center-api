@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using iron_revolution_center_api.DTOs.Client;
 using iron_revolution_center_api.Models;
+using Microsoft.AspNetCore.Http;
 using MongoDB.Driver;
 
 namespace iron_revolution_center_api.Data.Interface
@@ -16,7 +17,7 @@ namespace iron_revolution_center_api.Data.Interface
         public Task<IEnumerable<ClientsModel>> ListClients();
 
         // get client by nip
-        public Task<IEnumerable<ClientsModel>> GetClientByNIP(string NIP);
+        public Task<ClientsModel> GetClientByNIP(string NIP);
 
         // register client
         public Task<RegisterClientDTO> RegisterClient(RegisterClientDTO clientDTO);
