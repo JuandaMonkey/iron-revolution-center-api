@@ -8,16 +8,10 @@ using System.Threading.Tasks;
 
 namespace iron_revolution_center_api.Models
 {
-    // db.Roles
     public class RolesModel
     {
-        [BsonId]
-        public ObjectId _id { get; set; } // _id
+        public string? Rol_Id { get; set; } // identifier
 
-        [BsonElement("Role_ID")]
-        public string? Role_ID { get; set; } // identifier
-
-        [BsonElement("Name")]
-        public string? Name { get; set; } // name
+        public string? Nombre { get; set; } // name
     }
 }

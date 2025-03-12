@@ -8,12 +8,10 @@ using System.Threading.Tasks;
 
 namespace iron_revolution_center_api.DTOs.Client
 {
-    // db.Clients.UpdateOne
     public class ModifyClientDTO
     {
-        public string? Foto { get; set; }  // photo
+        public byte[]? Foto { get; set; } // photo
 
-        [BsonElement("Full_Name")]
         [StringLength(500, MinimumLength = 3, ErrorMessage = "El nombre completo debe tener entre 3 y 500 caracteres.")] // length
         public string? Nombre_Completo { get; set; }  // full name
 

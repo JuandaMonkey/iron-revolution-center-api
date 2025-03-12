@@ -11,12 +11,12 @@ namespace iron_revolution_center_api.Models
 {
     public class Activity_CenterModel
     {
-        public string? Cliente { get; set; } // identifier
+        public ClientsModel? Cliente { get; set; } // identifier
     
         public DateTime? Entrada { get; set; } // fecha y hora de entrada
 
         public DateTime? Salida { get; set; } // fecha y salida de entrada
 
-        public string? Sucursal { get; set; } // identifier
+        public BranchesModel? Sucursal { get; set; } // identifier
     }
 }

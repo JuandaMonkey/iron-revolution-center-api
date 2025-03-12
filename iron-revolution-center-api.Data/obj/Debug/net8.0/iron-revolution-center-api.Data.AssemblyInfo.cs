@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("iron-revolution-center-api.Data")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+da5810279ab036e611050da033032cdc7539e33c")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9c550bf01b8581b1e1bf22d780f0fa87e2cccf1e")]
 [assembly: System.Reflection.AssemblyProductAttribute("iron-revolution-center-api.Data")]
 [assembly: System.Reflection.AssemblyTitleAttribute("iron-revolution-center-api.Data")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

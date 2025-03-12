@@ -56,13 +56,12 @@ namespace iron_revolution_center_api
             });
 
             // services
-            builder.Services.AddScoped<iBranches_OfficeService, Branches_OfficeService>(); // branches office
+            builder.Services.AddScoped<iBranchesService, BranchesService>(); // branches office
             builder.Services.AddScoped<iClientsService, ClientsService>(); // clients
             builder.Services.AddScoped<iExercisesService, ExercisesService>(); // exerecises
             builder.Services.AddScoped<iMembershipsService, MembershipsService>(); // memberships
-            builder.Services.AddScoped<iMembershipAssigmentService, MembershipAssigmentService>(); // membership assigment
-            builder.Services.AddScoped<iRolesService, RolesService>(); // roles
-            builder.Services.AddScoped<iStaffService, StaffService>(); // staff
+            builder.Services.AddScoped<iRolesInterface, RolesService>(); // roles
+            builder.Services.AddScoped<iEmployeesService, EmployeesService>(); // staff
             builder.Services.AddScoped<iUsersService, UsersService>(); // users
             builder.Services.AddScoped<iActivity_CenterService, Activity_CenterService>();
 

@@ -10,19 +10,11 @@ namespace iron_revolution_center_api.Models
 {
     public class UsersModel
     {
-        [BsonId]
-        public ObjectId _id { get; set; } // _id
+        public string? Nombre_Usuario { get; set; } // user name
 
-        [BsonElement("User_Name")]
-        public string? User_Name { get; set; } // user name
+        public string? Contraseña { get; set; } // password
 
-        [BsonElement("Password")]
-        public string? Password { get; set; } // password
+        public string? Rol { get; set; } // role
 
-        [BsonElement("Role")]
-        public string? Role { get; set; } // role
-
-        [BsonElement("NIP")]
-        public string? NIP { get; set; } // nip
     }
 }

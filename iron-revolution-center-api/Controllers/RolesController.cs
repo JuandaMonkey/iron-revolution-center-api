@@ -9,14 +9,14 @@ namespace iron_revolution_center_api.Controllers
     [ApiController]
     public class RolesController : Controller
     {
-        private iRolesService _roleService;
-        public RolesController(iRolesService rolesService)
+        private iRolesInterface _roleService;
+        public RolesController(iRolesInterface rolesService)
         {
             _roleService = rolesService;
         }
 
         #region ListRoles
-        [HttpGet("List-Roles")]
+        [HttpGet("Listar-Roles")]
         public async Task<IActionResult> ListRoles()
         {
             try
@@ -33,26 +33,8 @@ namespace iron_revolution_center_api.Controllers
         }
         #endregion
 
-        #region GetRoleByID
-        //[HttpGet("Get-Role-By-ID")]
-        //public async Task<IActionResult> GetRoleByID([FromHeader] string roleID)
-        //{
-        //    try
-        //    {
-        //        var role = await _roleService.GetRoleByID(roleID);
-
-        //        if (role != null)
-        //            return Ok(role);
-        //        else
-        //            return NoContent();
-        //    } catch (Exception ex) {
-        //        return StatusCode(500, $"Error: {ex.Message}");
-        //    }
-        //}
-        #endregion
-
         #region InsertRole
-        [HttpPost("Insert-Role")]
+        [HttpPost("Insertar-Rol")]
         public async Task<IActionResult> InsertRole([FromBody] InsertRoleDTO roleDTO)
         {
             try
@@ -63,16 +45,14 @@ namespace iron_revolution_center_api.Controllers
                     return Ok(role);
                 else
                     return NoContent();
-            }
-            catch (Exception ex)
-            {
+            } catch (Exception ex) {
                 return StatusCode(500, $"Error: {ex.Message}");
             }
         }
         #endregion
 
         #region ModifyRole
-        [HttpPut("Modify-Role")]
+        [HttpPut("Modificar-Rol")]
         public async Task<IActionResult> ModifyRole([FromHeader] string roleID, [FromBody] ModifyRoleDTO roleDTO)
         {
             try
@@ -90,7 +70,7 @@ namespace iron_revolution_center_api.Controllers
         #endregion
 
         #region DeleteRole
-        [HttpDelete("Delete-Role")]
+        [HttpDelete("Eliminar-Rol")]
         public async Task<IActionResult> DeleteRole([FromHeader] string roleID)
         {
             try

@@ -317,6 +317,7 @@
       },
       "iron-revolution-center-api.DTOs/1.0.0": {
         "dependencies": {
+          "Microsoft.AspNetCore.Http.Features": "5.0.17",
           "MongoDB.Bson": "3.1.0",
           "iron-revolution-center-api.Models": "1.0.0"
         },

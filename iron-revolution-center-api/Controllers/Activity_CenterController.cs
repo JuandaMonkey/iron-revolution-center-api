@@ -15,60 +15,60 @@ namespace iron_revolution_center_api.Controllers
             _activity_CenterService = activityCenter;
         }
 
-        #region ListActivity
-        [HttpGet("List-Activity")]
-        public async Task<IActionResult> ListActivity()
-        {
-            try
-            {
-                var activity = await _activity_CenterService.ListActivity();
+        //#region ListActivity
+        //[HttpGet("Listar-Actividad")]
+        //public async Task<IActionResult> ListActivity()
+        //{
+        //    try
+        //    {
+        //        var activity = await _activity_CenterService.ListActivity();
 
-                if (activity != null)
-                    return Ok(activity);
-                else
-                    return NoContent();
-            } catch (Exception ex) {
-                return StatusCode(500, $"Error: {ex.Message}");
-            }
-        }
-        #endregion
+        //        if (activity != null)
+        //            return Ok(activity);
+        //        else
+        //            return NoContent();
+        //    } catch (Exception ex) {
+        //        return StatusCode(500, $"Error: {ex.Message}");
+        //    }
+        //}
+        //#endregion
 
-        #region RegisterEntry
-        [HttpPost("Register-Entry")]
-        public async Task<IActionResult> RegisterEntry([FromHeader] string NIP, [FromHeader] string branchOffice)
-        {
-            try
-            {
-                var activity = await _activity_CenterService.RegisterEntry(NIP, branchOffice);
+        //#region RegisterEntry
+        //[HttpPost("Registrar-Entrada")]
+        //public async Task<IActionResult> RegisterEntry([FromHeader] string NIP, [FromHeader] string branchOffice)
+        //{
+        //    try
+        //    {
+        //        var activity = await _activity_CenterService.RegisterEntry(NIP, branchOffice);
 
-                if (activity != null)
-                    return Ok(activity);
-                else
-                    return NoContent();
-            } catch (Exception ex) { 
-                return StatusCode(500, $"Error: {ex.Message}");
-            }
-        }
-        #endregion
+        //        if (activity == true)
+        //            return Ok(activity);
+        //        else
+        //            return NoContent();
+        //    } catch (Exception ex) { 
+        //        return StatusCode(500, $"Error: {ex.Message}");
+        //    }
+        //}
+        //#endregion
 
-        #region RegisterExit
-        [HttpPost("RegisterExit")]
-        public async Task<IActionResult> RegisterExit([FromHeader] string NIP)
-        {
-            try
-            {
-                var activity = await _activity_CenterService.RegisterExit(NIP);
+        //#region RegisterExit
+        //[HttpPost("Registrar-Salida")]
+        //public async Task<IActionResult> RegisterExit([FromHeader] string NIP)
+        //{
+        //    try
+        //    {
+        //        var activity = await _activity_CenterService.RegisterExit(NIP);
 
-                if (activity != null)
-                    return Ok(activity);
-                else
-                    return NoContent();
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, $"Error: {ex.Message}");
-            }
-        }
-        #endregion
+        //        if (activity == true)
+        //            return Ok(activity);
+        //        else
+        //            return NoContent();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return StatusCode(500, $"Error: {ex.Message}");
+        //    }
+        //}
+        //#endregion
     }
 }

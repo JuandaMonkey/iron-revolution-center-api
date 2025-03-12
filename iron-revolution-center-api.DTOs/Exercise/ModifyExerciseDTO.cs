@@ -10,21 +10,18 @@ namespace iron_revolution_center_api.DTOs.Exercise
 {
     public class ModifyExerciseDTO
     {
-        [BsonElement("Photo")]
-        public string? Photo { get; set; }  // photo
+        public byte[]? Foto { get; set; } // photo
 
-        [BsonElement("Name")]
-        public string? Name { get; set; }  // name
+        public string? Nombre { get; set; } // name
 
-        [BsonElement("Description")]
-        public string? Description { get; set; }  // description
+        public string? Tipo { get; set; } // type
 
-        [BsonElement("Series")]
+        public string? Descripcion { get; set; } // description
+
         [Range(1, int.MaxValue, ErrorMessage = "Las series deben ser un número positivo.")]
         public int? Series { get; set; }  // series
 
-        [BsonElement("Repetitions")]
         [Range(1, int.MaxValue, ErrorMessage = "Las repeticiones deben ser un número positivo.")]
-        public int? Repetitions { get; set; }  // series
+        public int? Repeticiones { get; set; }  // repetitions
     }
 }

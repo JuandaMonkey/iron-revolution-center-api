@@ -13,6 +13,6 @@ namespace iron_revolution_center_api.DTOs.Membership
         public string? NIP { get; set; } // identification
 
         [Required(ErrorMessage = "Se requiere el ID de la membresía.")] // required
-        public string? Membresia_ID { get; set; } // identification
+        public string? Membresia_Id { get; set; } // identification
     }
 }

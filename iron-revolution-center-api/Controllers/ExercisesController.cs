@@ -16,7 +16,7 @@ namespace iron_revolution_center_api.Controllers
         }
 
         #region ListExercises
-        [HttpGet("List-Exercises")]
+        [HttpGet("Listar-Ejercicios")]
         public async Task<IActionResult> ListExercises()
         {
             try
@@ -33,13 +33,13 @@ namespace iron_revolution_center_api.Controllers
         }
         #endregion
 
-        #region RegisterExercises
-        [HttpPost("Register-Exercises")]
-        public async Task<IActionResult> RegisterExercises([FromBody] InsertExerciseDTO exerciseDTO)
+        #region InsertExercises
+        [HttpPost("Insertar-Ejercicio")]
+        public async Task<IActionResult> InsertExercises([FromBody] InsertExerciseDTO exerciseDTO)
         {
             try
             {
-                var exercise = await _exercisesService.RegisterExercises(exerciseDTO);
+                var exercise = await _exercisesService.InsertExercises(exerciseDTO);
 
                 if (exercise != null)
                     return Ok(exercise);
@@ -52,12 +52,12 @@ namespace iron_revolution_center_api.Controllers
         #endregion
 
         #region ModifyExercises
-        [HttpPut("Modify-Exercises")]
-        public async Task<IActionResult> ModifyExercises([FromHeader] string exerciseID, [FromBody] ModifyExerciseDTO exerciseDTO)
+        [HttpPut("Modificar-Ejercicio")]
+        public async Task<IActionResult> ModifyExercises([FromHeader] string exerciseId, [FromBody] ModifyExerciseDTO exerciseDTO)
         {
             try
             {
-                var exercise = await _exercisesService.ModifyExercises(exerciseID, exerciseDTO);
+                var exercise = await _exercisesService.ModifyExercises(exerciseId, exerciseDTO);
                 
                 if (exercise != null)
                     return Ok(exercise);
@@ -70,12 +70,12 @@ namespace iron_revolution_center_api.Controllers
         #endregion
 
         #region DeleteExercises
-        [HttpDelete("Delete-Exercises")]
-        public async Task<IActionResult> DeleteExercises([FromHeader] string exerciseID)
+        [HttpDelete("Eliminar-Ejercicio")]
+        public async Task<IActionResult> DeleteExercises([FromHeader] string exerciseId)
         {
             try
             {
-                var exercise = await _exercisesService.DeleteExercises(exerciseID);
+                var exercise = await _exercisesService.DeleteExercises(exerciseId);
 
                 if (exercise != null)
                     return Ok(exercise);

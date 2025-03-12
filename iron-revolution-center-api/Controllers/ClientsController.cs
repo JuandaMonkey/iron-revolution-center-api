@@ -45,8 +45,7 @@ namespace iron_revolution_center_api.Controllers
                     return Ok(clients);
                 else
                     return NoContent();
-            } catch (Exception ex)
-            {
+            } catch (Exception ex) {
                 return StatusCode(500, $"Error: {ex.Message}");
             }
         }
@@ -54,7 +53,7 @@ namespace iron_revolution_center_api.Controllers
 
         #region RegisterClient
         [HttpPost("Registrar-Cliente")]
-        public async Task<IActionResult> RegisterClient([FromForm] RegisterClientDTO clientDTO)
+        public async Task<IActionResult> RegisterClient([FromBody] RegisterClientDTO clientDTO)
         {
             try
             {
@@ -95,6 +94,24 @@ namespace iron_revolution_center_api.Controllers
             try
             {
                 var client = await _clientService.DeleteClient(NIP);
+
+                if (client != null)
+                    return Ok(client);
+                else
+                    return NoContent();
+            } catch (Exception ex) {
+                return StatusCode(500, $"Error: {ex.Message}");
+            }
+        }
+        #endregion
+
+        #region ModifyClient
+        [HttpPut("Generar-Nueva-Clave-De-Seguridad")]
+        public async Task<IActionResult> GenerateSegurityKey([FromHeader] string NIP)
+        {
+            try
+            {
+                var client = await _clientService.GenerateSegurityKey(NIP);
 
                 if (client != null)
                     return Ok(client);

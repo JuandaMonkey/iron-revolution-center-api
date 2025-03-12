@@ -7,6 +7,15 @@ C:\Users\juand\OneDrive\Escritorio\iron-revolution-center\iron-revolution-center
 C:\Users\juand\OneDrive\Escritorio\iron-revolution-center\iron-revolution-center-api\iron-revolution-center-api\bin\Debug\net8.0\iron-revolution-center-api.pdb
 C:\Users\juand\OneDrive\Escritorio\iron-revolution-center\iron-revolution-center-api\iron-revolution-center-api\bin\Debug\net8.0\BCrypt.Net-Next.dll
 C:\Users\juand\OneDrive\Escritorio\iron-revolution-center\iron-revolution-center-api\iron-revolution-center-api\bin\Debug\net8.0\DnsClient.dll
+C:\Users\juand\OneDrive\Escritorio\iron-revolution-center\iron-revolution-center-api\iron-revolution-center-api\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\juand\OneDrive\Escritorio\iron-revolution-center\iron-revolution-center-api\iron-revolution-center-api\bin\Debug\net8.0\Microsoft.Extensions.ObjectPool.dll
+C:\Users\juand\OneDrive\Escritorio\iron-revolution-center\iron-revolution-center-api\iron-revolution-center-api\bin\Debug\net8.0\Microsoft.Extensions.Options.dll
+C:\Users\juand\OneDrive\Escritorio\iron-revolution-center\iron-revolution-center-api\iron-revolution-center-api\bin\Debug\net8.0\Microsoft.IdentityModel.Abstractions.dll
+C:\Users\juand\OneDrive\Escritorio\iron-revolution-center\iron-revolution-center-api\iron-revolution-center-api\bin\Debug\net8.0\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\juand\OneDrive\Escritorio\iron-revolution-center\iron-revolution-center-api\iron-revolution-center-api\bin\Debug\net8.0\Microsoft.IdentityModel.Logging.dll
+C:\Users\juand\OneDrive\Escritorio\iron-revolution-center\iron-revolution-center-api\iron-revolution-center-api\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.dll
+C:\Users\juand\OneDrive\Escritorio\iron-revolution-center\iron-revolution-center-api\iron-revolution-center-api\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\Users\juand\OneDrive\Escritorio\iron-revolution-center\iron-revolution-center-api\iron-revolution-center-api\bin\Debug\net8.0\Microsoft.IdentityModel.Tokens.dll
 C:\Users\juand\OneDrive\Escritorio\iron-revolution-center\iron-revolution-center-api\iron-revolution-center-api\bin\Debug\net8.0\Microsoft.OpenApi.dll
 C:\Users\juand\OneDrive\Escritorio\iron-revolution-center\iron-revolution-center-api\iron-revolution-center-api\bin\Debug\net8.0\MongoDB.Bson.dll
 C:\Users\juand\OneDrive\Escritorio\iron-revolution-center\iron-revolution-center-api\iron-revolution-center-api\bin\Debug\net8.0\MongoDB.Driver.dll
@@ -15,6 +24,7 @@ C:\Users\juand\OneDrive\Escritorio\iron-revolution-center\iron-revolution-center
 C:\Users\juand\OneDrive\Escritorio\iron-revolution-center\iron-revolution-center-api\iron-revolution-center-api\bin\Debug\net8.0\Swashbuckle.AspNetCore.Swagger.dll
 C:\Users\juand\OneDrive\Escritorio\iron-revolution-center\iron-revolution-center-api\iron-revolution-center-api\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerGen.dll
 C:\Users\juand\OneDrive\Escritorio\iron-revolution-center\iron-revolution-center-api\iron-revolution-center-api\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Users\juand\OneDrive\Escritorio\iron-revolution-center\iron-revolution-center-api\iron-revolution-center-api\bin\Debug\net8.0\System.IdentityModel.Tokens.Jwt.dll
 C:\Users\juand\OneDrive\Escritorio\iron-revolution-center\iron-revolution-center-api\iron-revolution-center-api\bin\Debug\net8.0\ZstdSharp.dll
 C:\Users\juand\OneDrive\Escritorio\iron-revolution-center\iron-revolution-center-api\iron-revolution-center-api\bin\Debug\net8.0\iron-revolution-center-api.Data.dll
 C:\Users\juand\OneDrive\Escritorio\iron-revolution-center\iron-revolution-center-api\iron-revolution-center-api\bin\Debug\net8.0\iron-revolution-center-api.DTOs.dll
@@ -29,6 +39,7 @@ C:\Users\juand\OneDrive\Escritorio\iron-revolution-center\iron-revolution-center
 C:\Users\juand\OneDrive\Escritorio\iron-revolution-center\iron-revolution-center-api\iron-revolution-center-api\obj\Debug\net8.0\iron-revolution-center-api.csproj.CoreCompileInputs.cache
 C:\Users\juand\OneDrive\Escritorio\iron-revolution-center\iron-revolution-center-api\iron-revolution-center-api\obj\Debug\net8.0\iron-revolution-center-api.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\juand\OneDrive\Escritorio\iron-revolution-center\iron-revolution-center-api\iron-revolution-center-api\obj\Debug\net8.0\iron-revolution-center-api.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\juand\OneDrive\Escritorio\iron-revolution-center\iron-revolution-center-api\iron-revolution-center-api\obj\Debug\net8.0\iron-revolution-center-api.sourcelink.json
 C:\Users\juand\OneDrive\Escritorio\iron-revolution-center\iron-revolution-center-api\iron-revolution-center-api\obj\Debug\net8.0\staticwebassets.build.json
 C:\Users\juand\OneDrive\Escritorio\iron-revolution-center\iron-revolution-center-api\iron-revolution-center-api\obj\Debug\net8.0\staticwebassets.development.json
 C:\Users\juand\OneDrive\Escritorio\iron-revolution-center\iron-revolution-center-api\iron-revolution-center-api\obj\Debug\net8.0\staticwebassets\msbuild.iron-revolution-center-api.Microsoft.AspNetCore.StaticWebAssets.props
@@ -43,14 +54,3 @@ C:\Users\juand\OneDrive\Escritorio\iron-revolution-center\iron-revolution-center
 C:\Users\juand\OneDrive\Escritorio\iron-revolution-center\iron-revolution-center-api\iron-revolution-center-api\obj\Debug\net8.0\iron-revolution-center-api.pdb
 C:\Users\juand\OneDrive\Escritorio\iron-revolution-center\iron-revolution-center-api\iron-revolution-center-api\obj\Debug\net8.0\iron-revolution-center-api.genruntimeconfig.cache
 C:\Users\juand\OneDrive\Escritorio\iron-revolution-center\iron-revolution-center-api\iron-revolution-center-api\obj\Debug\net8.0\ref\iron-revolution-center-api.dll
-C:\Users\juand\OneDrive\Escritorio\iron-revolution-center\iron-revolution-center-api\iron-revolution-center-api\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
-C:\Users\juand\OneDrive\Escritorio\iron-revolution-center\iron-revolution-center-api\iron-revolution-center-api\bin\Debug\net8.0\Microsoft.IdentityModel.Abstractions.dll
-C:\Users\juand\OneDrive\Escritorio\iron-revolution-center\iron-revolution-center-api\iron-revolution-center-api\bin\Debug\net8.0\Microsoft.IdentityModel.JsonWebTokens.dll
-C:\Users\juand\OneDrive\Escritorio\iron-revolution-center\iron-revolution-center-api\iron-revolution-center-api\bin\Debug\net8.0\Microsoft.IdentityModel.Logging.dll
-C:\Users\juand\OneDrive\Escritorio\iron-revolution-center\iron-revolution-center-api\iron-revolution-center-api\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.dll
-C:\Users\juand\OneDrive\Escritorio\iron-revolution-center\iron-revolution-center-api\iron-revolution-center-api\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
-C:\Users\juand\OneDrive\Escritorio\iron-revolution-center\iron-revolution-center-api\iron-revolution-center-api\bin\Debug\net8.0\Microsoft.IdentityModel.Tokens.dll
-C:\Users\juand\OneDrive\Escritorio\iron-revolution-center\iron-revolution-center-api\iron-revolution-center-api\bin\Debug\net8.0\System.IdentityModel.Tokens.Jwt.dll
-C:\Users\juand\OneDrive\Escritorio\iron-revolution-center\iron-revolution-center-api\iron-revolution-center-api\obj\Debug\net8.0\iron-revolution-center-api.sourcelink.json
-C:\Users\juand\OneDrive\Escritorio\iron-revolution-center\iron-revolution-center-api\iron-revolution-center-api\bin\Debug\net8.0\Microsoft.Extensions.ObjectPool.dll
-C:\Users\juand\OneDrive\Escritorio\iron-revolution-center\iron-revolution-center-api\iron-revolution-center-api\bin\Debug\net8.0\Microsoft.Extensions.Options.dll
