@@ -11,28 +11,25 @@ namespace iron_revolution_center_api.Data.Interface
     // interface for the UsersService
     public interface iUsersService
     {
-        //// list of users
-        //public Task<IEnumerable<UsersModel>> ListUsers();
+        // list of users
+        public Task<IEnumerable<UsersModel>> ListUsers();
 
-        //// list of users by role
-        ////public Task<IEnumerable<UsersModel>> ListUsersByRole(string roleID);
+        // get user
+        public Task<ShowUserDTO> GetUsersByUserName(string userName);
 
-        //// get user by id
-        //public Task<UsersModel> GetUsersByUserName(string userName);
+        // register user 
+        public Task<ShowUserDTO> RegisterUser(RegisterUserDTO userDTO);
 
-        //// register user 
-        //public Task<RegisterUserDTO> RegisterUser(RegisterUserDTO userDTO);
+        // register user client
+        public Task<ShowUserDTO> RegisterUserClient(RegisterUserDTO userDTO);
 
-        //// register user client
-        //public Task<RegisterUserDTO> RegisterUserClient(RegisterUserDTO userDTO);
+        // modify user name
+        public Task<ShowUserDTO> ModifyUserName(string userName, ModifyUserNameDTO userNameDTO);
 
-        //// modify user name
-        //public Task<UsersModel> ModifyUserName(string userName, ModifyUserNameDTO userNameDTO);
+        // modify password
+        public Task<ShowUserDTO> ModifyPassword(string userName, ModifyPassworDTO passwordDTO);
 
-        //// modify password
-        //public Task<UsersModel> ModifyPassword(string userName, ModifyPassworDTO passwordDTO);
-
-        //// delete user
-        //public Task<UsersModel> DeleteUser(string userName);
+        // delete user
+        public Task<ShowUserDTO> DeleteUser(string userName);
     }
 }

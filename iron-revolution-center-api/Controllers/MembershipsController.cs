@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SignalR.Protocol;
 using Microsoft.AspNetCore.WebUtilities;
 using System.Diagnostics.Eventing.Reader;
+using System.Globalization;
 
 namespace iron_revolution_center_api.Controllers
 {
@@ -18,7 +19,7 @@ namespace iron_revolution_center_api.Controllers
         }
 
         #region ListMemberships
-        [HttpGet("Listar-Membresías")]
+        [HttpGet("ListarMembresias")]
         public async Task<IActionResult> ListMemberships()
         {
             try

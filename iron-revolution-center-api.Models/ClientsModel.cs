@@ -25,5 +25,7 @@ namespace iron_revolution_center_api.Models
         public DateOnly? Fecha_Inicio { get; set; } // date start
 
         public DateOnly? Fecha_Fin { get; set; } // date end
+
+        public BranchesModel? Sucursal { get; set; } // branch
     }
 }

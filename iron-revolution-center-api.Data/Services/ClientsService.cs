@@ -23,23 +23,35 @@ namespace iron_revolution_center_api.Data.Service
         #region MongoDB Configuration
         private readonly IMongoDatabase _mongoDatabase;
         private readonly IMongoCollection<ClientsModel> _clientsCollection;
+        private readonly IMongoCollection<MembershipsModel> _membershipCollection;
         private readonly IMongoCollection<RegisterClientDTO> _registerClientCollection;
         private readonly IMongoCollection<ModifyClientDTO> _modifyClientCollection;
         private readonly IMongoCollection<MembershipsModel> _membersCollection;
+        private readonly IMongoCollection<BranchesModel> _branchesCollection;
 
         // method to exclude _id field
         private static ProjectionDefinition<ClientsModel> ExcludeIdProjection()
         {
             return Builders<ClientsModel>.Projection.Exclude("_id");
         }
+        private static ProjectionDefinition<MembershipsModel> ExcludeIdProjectionMemberships()
+        {
+            return Builders<MembershipsModel>.Projection.Exclude("_id");
+        }
+        private static ProjectionDefinition<BranchesModel> ExcludeIdProjectionBranches()
+        {
+            return Builders<BranchesModel>.Projection.Exclude("_id");
+        }
 
         public ClientsService(IMongoDatabase mongoDatabase)
         {
             _mongoDatabase = mongoDatabase;
             _clientsCollection = _mongoDatabase.GetCollection<ClientsModel>("Clients");
+            _membershipCollection = _mongoDatabase.GetCollection<MembershipsModel>("Memberships");
             _registerClientCollection = _mongoDatabase.GetCollection<RegisterClientDTO>("Clients");
             _modifyClientCollection = _mongoDatabase.GetCollection<ModifyClientDTO>("Clients");
             _membersCollection = _mongoDatabase.GetCollection<MembershipsModel>("Memberships");
+            _branchesCollection = _mongoDatabase.GetCollection<BranchesModel>("Branches");
         }
         #endregion
 
@@ -90,16 +102,66 @@ namespace iron_revolution_center_api.Data.Service
                 return false;
             }
         }
-        #endregion
 
-        #region ListClients
-        public async Task<IEnumerable<ClientsModel>> ListClients()
+        private async Task<bool> IsBranchIdAlreadyUsed(string branchId)
         {
             try
             {
+                // check branch
+                var branchExists = await _branchesCollection
+                    .CountDocumentsAsync(branch => branch.Sucursal_Id == branchId);
+
+                // validate existence
+                return branchExists > 0;
+            } catch {
+                // if not in used
+                return false;
+            }
+        }
+        #endregion
+
+        #region ListClients
+        public async Task<IEnumerable<ClientsModel>> ListClients(string membershipId, DateOnly startDay, DateOnly endDay)
+        {
+            try
+            {
+                // constructors
+                var filterBuilder = Builders<ClientsModel>.Filter;
+                var filter = new List<FilterDefinition<ClientsModel>>();
+
+                if (!string.IsNullOrEmpty(membershipId))
+                {
+                    var membership = await _membersCollection
+                        .Find(membership => membership.Membresia_Id == membershipId)
+                        .Project<MembershipsModel>(ExcludeIdProjectionMemberships())
+                        .FirstOrDefaultAsync();
+
+                    filter.Add(filterBuilder.Eq(client => client.Membresia, membership.Nombre));
+                }
+
+                // Gte: Greate That or Equal
+                filter.Add(filterBuilder.Gte(client => client.Fecha_Inicio, startDay));
+                // Lte: Less That or Equal
+                filter.Add(filterBuilder.Lte(client => client.Fecha_Fin, endDay));
+
+                var dateFilter = filterBuilder.Or(
+                    filterBuilder.And(
+                        filterBuilder.Gte(client => client.Fecha_Inicio, startDay),
+                        filterBuilder.Lte(client => client.Fecha_Inicio, endDay)
+                    ),
+                    filterBuilder.And(
+                        filterBuilder.Gte(client => client.Fecha_Fin, startDay),
+                        filterBuilder.Lte(client => client.Fecha_Fin, endDay)
+                    )
+                );
+
+                filter.Add(dateFilter);
+
+                var filters = filter.Any() ? filterBuilder.And(filter) : filterBuilder.Empty;
+
                 // get clients
                 return await _clientsCollection
-                    .Find(FilterDefinition<ClientsModel>.Empty)
+                    .Find(filters)
                     .Project<ClientsModel>(ExcludeIdProjection())
                     .ToListAsync();
             } catch (MongoException ex) {
@@ -134,21 +196,23 @@ namespace iron_revolution_center_api.Data.Service
         #endregion
 
         #region RegisterClient
-        public async Task<ClientsModel> RegisterClient(RegisterClientDTO clientDTO)
+        public async Task<ClientsModel> RegisterClient(newClientModel clientDTO)
         {
             if (string.IsNullOrEmpty(clientDTO.Celular)) 
                 throw new ArgumentException($"El número de celular no puede estar vacío.");
             if (await IsPhoneAlreadyUsed(clientDTO.Celular)) 
                 throw new ArgumentException($"Número de celular: {clientDTO.Celular} ya en uso");
+            if (string.IsNullOrEmpty(clientDTO.sucursal_Id))
+                throw new ArgumentException($"El ID de la sucursal no puede estar vacío.");
+            if (!await IsBranchIdAlreadyUsed(clientDTO.sucursal_Id))
+                throw new ArgumentException($"El ID: {clientDTO.sucursal_Id} no existe.");
             try
             {
                 // generate a unique nip
                 string NIP;
                 do
-                    NIP = new Random().Next(1, 10000).ToString("D5");
+                    NIP = new Random().Next(1, 10000).ToString("D6");
                 while (await IsClientRegistered(NIP));
-
-                clientDTO.NIP = NIP;
 
                 // generate a unique seguirity key
                 string SegurityKey;
@@ -156,27 +220,34 @@ namespace iron_revolution_center_api.Data.Service
                     SegurityKey = new Random().Next(1, 100000).ToString("D5");
                 while (await IsSegurityKeyAlreadyUsed(SegurityKey));
 
-                clientDTO.Clave_Seguridad = SegurityKey;
+                var branch = await _branchesCollection
+                    .Find(branch => branch.Sucursal_Id == clientDTO.sucursal_Id)
+                    .Project<BranchesModel>(ExcludeIdProjectionBranches())
+                    .FirstOrDefaultAsync();
 
-                // register client
                 var newClient = new RegisterClientDTO
                 {
-                    NIP = clientDTO.NIP,
+                    NIP = NIP,
                     Foto = clientDTO.Foto,
-                    Clave_Seguridad = clientDTO.Clave_Seguridad,
+                    Clave_Seguridad = SegurityKey,
                     Nombre_Completo = clientDTO.Nombre_Completo,
                     Celular = clientDTO.Celular,
-                    Observacion = clientDTO.Observacion
+                    Observacion = clientDTO.Observacion,
+                    Sucursal = new BranchesModel
+                    {
+                        Sucursal_Id = branch.Sucursal_Id,
+                        Nombre = branch.Nombre,
+                        Ubicacion = branch.Ubicacion
+                    }
                 };
 
                 // check if is not null
                 if (newClient == null)
                     throw new ArgumentException($"Registro fallido.");
 
-                // register
+                // insert
                 await _registerClientCollection.InsertOneAsync(newClient);
 
-                // client
                 return await GetClientByNIP(newClient.NIP);
             } catch (MongoException ex) {
                 // in case of error
@@ -189,7 +260,7 @@ namespace iron_revolution_center_api.Data.Service
         #endregion
 
         #region ModifyClient
-        public async Task<ClientsModel> ModifyClient(string NIP, ModifyClientDTO clientDTO)
+        public async Task<ClientsModel> ModifyClient(string NIP, modifyClientModel clientDTO)
         {
             if (string.IsNullOrEmpty(NIP)) 
                 throw new ArgumentException($"El NIP no puede estar vacío.");
@@ -218,7 +289,18 @@ namespace iron_revolution_center_api.Data.Service
                 if (!string.IsNullOrEmpty(clientDTO.Observacion)) // observation
                     updateDefinitions.Add(updateBuilder
                                      .Set(client => client.Observacion, clientDTO.Observacion));
+                if(!string.IsNullOrEmpty(clientDTO.sucursal_Id)) // branch
+                {
+                    var branch = await _branchesCollection
+                    .Find(branch => branch.Sucursal_Id == clientDTO.sucursal_Id)
+                    .Project<BranchesModel>(ExcludeIdProjectionBranches())
+                    .FirstOrDefaultAsync();
 
+                    updateDefinitions.Add(updateBuilder
+                                     .Set(client => client.Sucursal.Sucursal_Id, clientDTO.sucursal_Id)
+                                     .Set(client => client.Sucursal.Nombre, branch.Nombre)
+                                     .Set(client => client.Sucursal.Ubicacion, branch.Ubicacion));
+                }
                 // verification
                 if (!updateDefinitions.Any())
                     throw new ArgumentException("No se proporcionaron campos válidos para modificar.");
@@ -230,14 +312,15 @@ namespace iron_revolution_center_api.Data.Service
                 var filter = Builders<ClientsModel>
                     .Filter
                     .Eq(client => client.NIP, NIP);
-                // result of the modification
+
+                // update
                 var update = await _clientsCollection
                     .UpdateOneAsync(filter, combine);
+
                 // check if the update was successful
                 if (update.ModifiedCount == 0)
                     throw new ArgumentException("Error al modificar cliente.");
 
-                // client
                 return await GetClientByNIP(NIP);
             } catch (MongoException ex) {
                 // in case of error
@@ -259,12 +342,9 @@ namespace iron_revolution_center_api.Data.Service
             try
             {
                 // client
-                var client = await _clientsCollection
-                    .Find(client => client.NIP == NIP)
-                    .Project<ClientsModel>(ExcludeIdProjection())
-                    .FirstOrDefaultAsync();
+                var client = await GetClientByNIP(NIP);
 
-                // execute query
+                // delete
                 var delete = await _clientsCollection
                     .DeleteOneAsync(client => client.NIP == NIP);
 
@@ -272,7 +352,6 @@ namespace iron_revolution_center_api.Data.Service
                 if (delete.DeletedCount == 0)
                     throw new ArgumentException("Error al eliminar cliente.");
 
-                // return of result of elimination
                 return client;
             } catch (MongoException ex) {
                 // in case of error

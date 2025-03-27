@@ -1,4 +1,5 @@
-﻿using System;
+﻿using iron_revolution_center_api.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -9,14 +10,14 @@ namespace iron_revolution_center_api.DTOs.Activity_Center
 {
     public class EntryClientDTO
     {
-        [Required(ErrorMessage = "Se requiere el NIP del cliente.")] // required
-        public string Cliente { get; set; } = string.Empty; // identifier
+        [Required(ErrorMessage = "Se requiere el NIP del cliente.")] 
+        public ClientsModel? Cliente { get; set; } 
 
-        public DateTime Entrada { get; set; } // fecha y hora de entrada
+        public DateTime Entrada { get; set; } 
 
-        public DateTime Salida { get; set; } // fecha y salida de entrada
+        public DateTime Salida { get; set; } 
 
-        [Required(ErrorMessage = "Se requiere el ID de la sucursal.")] // required
-        public string Sucursal { get; set; } = string.Empty; // identifier
+        [Required(ErrorMessage = "Se requiere el ID de la sucursal.")] 
+        public BranchesModel? Sucursal { get; set; }
     }
 }

@@ -9,11 +9,11 @@ namespace iron_revolution_center_api.DTOs.Activity_Center
 {
     public class ExitClientDTO
     {
-        [Required(ErrorMessage = "Se requiere el NIP del cliente.")] // required
-        public string? Cliente { get; set; } // identifier
+        [Required(ErrorMessage = "Se requiere el NIP del cliente.")] 
+        public string? Cliente { get; set; } 
 
-        public DateTime Entrada { get; set; } // fecha y hora de entrada
+        public DateTime Entrada { get; set; }
 
-        public DateTime Salida { get; set; } // fecha y salida de entrada
+        public DateTime Salida { get; set; } 
     }
 }

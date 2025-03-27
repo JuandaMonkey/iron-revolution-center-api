@@ -1,5 +1,7 @@
 using iron_revolution_center_api.Data.Interface;
+using iron_revolution_center_api.Data.Interfaces;
 using iron_revolution_center_api.Data.Service;
+using iron_revolution_center_api.Data.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using MongoDB.Driver;
@@ -21,7 +23,7 @@ namespace iron_revolution_center_api
             {
                 options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
                 options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-            }).AddJwtBearer(options => 
+            }).AddJwtBearer(options =>
             {
                 options.RequireHttpsMetadata = false;
                 options.SaveToken = true;
@@ -63,7 +65,18 @@ namespace iron_revolution_center_api
             builder.Services.AddScoped<iRolesInterface, RolesService>(); // roles
             builder.Services.AddScoped<iEmployeesService, EmployeesService>(); // staff
             builder.Services.AddScoped<iUsersService, UsersService>(); // users
-            builder.Services.AddScoped<iActivity_CenterService, Activity_CenterService>();
+            builder.Services.AddScoped<iActivity_CenterService, Activity_CenterService>(); // activity center 
+            builder.Services.AddScoped<iDashboardService, DashboardService>();
+
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("AllowFrontend", policy =>
+                {
+                    policy.WithOrigins("http://localhost:4200")
+                        .AllowAnyHeader()
+                        .AllowAnyMethod();
+                });
+            });
 
             var app = builder.Build();
 
@@ -74,11 +87,11 @@ namespace iron_revolution_center_api
                 app.UseSwaggerUI();
             }
 
+            app.UseCors("AllowFrontend");
+
             app.UseHttpsRedirection();
 
             app.UseAuthentication();
-
-            app.UseAuthorization();
 
             app.MapControllers();
 

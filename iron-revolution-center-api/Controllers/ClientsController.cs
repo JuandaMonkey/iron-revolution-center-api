@@ -2,6 +2,7 @@
 using iron_revolution_center_api.DTOs.Client;
 using iron_revolution_center_api.Models;
 using Microsoft.AspNetCore.Mvc;
+using System.Globalization;
 
 namespace iron_revolution_center_api.Controllers
 {
@@ -16,12 +17,15 @@ namespace iron_revolution_center_api.Controllers
         }
 
         #region ListsClients
-        [HttpGet("Listar-Clientes")]
-        public async Task<IActionResult> ListClients()
+        [HttpGet("ListarClientes")]
+        public async Task<IActionResult> ListClients(string? membershipId, string startDay, string endDay)
         {
             try
             {
-                var clients = await _clientService.ListClients();
+                DateOnly parsedStartDay = DateOnly.ParseExact(startDay, "dd-MM-yyyy", CultureInfo.InvariantCulture);
+                DateOnly parsedEndDay = DateOnly.ParseExact(endDay, "dd-MM-yyyy", CultureInfo.InvariantCulture);
+
+                var clients = await _clientService.ListClients(membershipId, parsedStartDay, parsedEndDay);
 
                 if (clients != null)
                     return Ok(clients);
@@ -34,8 +38,8 @@ namespace iron_revolution_center_api.Controllers
         #endregion
 
         #region GetClientByNIP
-        [HttpGet("Consultar-Cliente-Por-NIP")]
-        public async Task<IActionResult> GetClientByNIP([FromHeader] string NIP)
+        [HttpGet("ConsultarClientePorNIP")]
+        public async Task<IActionResult> GetClientByNIP(string NIP)
         {
             try
             {
@@ -53,7 +57,7 @@ namespace iron_revolution_center_api.Controllers
 
         #region RegisterClient
         [HttpPost("Registrar-Cliente")]
-        public async Task<IActionResult> RegisterClient([FromBody] RegisterClientDTO clientDTO)
+        public async Task<IActionResult> RegisterClient([FromBody] newClientModel clientDTO)
         {
             try
             {
@@ -71,7 +75,7 @@ namespace iron_revolution_center_api.Controllers
 
         #region ModifyClient
         [HttpPut("Modificar-Cliente")]
-        public async Task<IActionResult> ModifyClient([FromHeader] string NIP, [FromBody] ModifyClientDTO clientDTO)
+        public async Task<IActionResult> ModifyClient([FromHeader] string NIP, [FromBody] modifyClientModel clientDTO)
         {
             try
             {

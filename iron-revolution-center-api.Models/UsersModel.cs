@@ -16,5 +16,6 @@ namespace iron_revolution_center_api.Models
 
         public string? Rol { get; set; } // role
 
+        public string? NIP { get; set; } // NIP
     }
 }

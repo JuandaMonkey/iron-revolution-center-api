@@ -14,16 +14,16 @@ namespace iron_revolution_center_api.Data.Interface
     public interface iClientsService
     {
         // list of clients
-        public Task<IEnumerable<ClientsModel>> ListClients();
+        public Task<IEnumerable<ClientsModel>> ListClients(string membershipId, DateOnly startDay, DateOnly endDay);
 
         // get client by nip
         public Task<ClientsModel> GetClientByNIP(string NIP);
 
         // register client
-        public Task<ClientsModel> RegisterClient(RegisterClientDTO clientDTO);
+        public Task<ClientsModel> RegisterClient(newClientModel clientDTO);
 
         // modify client
-        public Task<ClientsModel> ModifyClient(string NIP, ModifyClientDTO clientDTO);
+        public Task<ClientsModel> ModifyClient(string NIP, modifyClientModel clientDTO);
 
         // delete client
         public Task<ClientsModel> DeleteClient(string NIP);

@@ -2,6 +2,7 @@
 using iron_revolution_center_api.Data.Service;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Globalization;
 
 namespace iron_revolution_center_api.Controllers
 {
@@ -15,60 +16,63 @@ namespace iron_revolution_center_api.Controllers
             _activity_CenterService = activityCenter;
         }
 
-        //#region ListActivity
-        //[HttpGet("Listar-Actividad")]
-        //public async Task<IActionResult> ListActivity()
-        //{
-        //    try
-        //    {
-        //        var activity = await _activity_CenterService.ListActivity();
+        #region ListActivityCenter
+        [HttpGet("ListarCentroDeActividad")]
+        public async Task<IActionResult> ListActivityCenter(string? branchId, string startDay, string endDay)
+        {
+            try
+            {
+                DateTime parsedStartDay = DateTime.ParseExact(startDay, "dd-MM-yyyy", CultureInfo.InvariantCulture);
+                DateTime parsedEndDay = DateTime.ParseExact(endDay, "dd-MM-yyyy", CultureInfo.InvariantCulture);
 
-        //        if (activity != null)
-        //            return Ok(activity);
-        //        else
-        //            return NoContent();
-        //    } catch (Exception ex) {
-        //        return StatusCode(500, $"Error: {ex.Message}");
-        //    }
-        //}
-        //#endregion
+                var activity = await _activity_CenterService.ListActivityCenter(branchId, parsedStartDay, parsedEndDay);
 
-        //#region RegisterEntry
-        //[HttpPost("Registrar-Entrada")]
-        //public async Task<IActionResult> RegisterEntry([FromHeader] string NIP, [FromHeader] string branchOffice)
-        //{
-        //    try
-        //    {
-        //        var activity = await _activity_CenterService.RegisterEntry(NIP, branchOffice);
+                if (activity != null)
+                    return Ok(activity);
+                else
+                    return NoContent();
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Error: {ex.Message}");
+            }
+        }
+        #endregion
 
-        //        if (activity == true)
-        //            return Ok(activity);
-        //        else
-        //            return NoContent();
-        //    } catch (Exception ex) { 
-        //        return StatusCode(500, $"Error: {ex.Message}");
-        //    }
-        //}
-        //#endregion
+        #region RegisterEntry
+        [HttpPost("Registrar-Entrada")]
+        public async Task<IActionResult> RegisterEntry([FromHeader] string NIP, [FromHeader] string branchiD)
+        {
+            try
+            {
+                var activity = await _activity_CenterService.RegisterEntry(NIP, branchiD);
 
-        //#region RegisterExit
-        //[HttpPost("Registrar-Salida")]
-        //public async Task<IActionResult> RegisterExit([FromHeader] string NIP)
-        //{
-        //    try
-        //    {
-        //        var activity = await _activity_CenterService.RegisterExit(NIP);
+                if (activity == true)
+                    return Ok(activity);
+                else
+                    return NoContent();
+            } catch (Exception ex) {
+                return StatusCode(500, $"Error: {ex.Message}");
+            }
+        }
+        #endregion
 
-        //        if (activity == true)
-        //            return Ok(activity);
-        //        else
-        //            return NoContent();
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return StatusCode(500, $"Error: {ex.Message}");
-        //    }
-        //}
-        //#endregion
+        #region RegisterExit
+        [HttpPut("Registrar-Salida")]
+        public async Task<IActionResult> RegisterExit([FromHeader] string NIP)
+        {
+            try
+            {
+                var activity = await _activity_CenterService.RegisterExit(NIP);
+
+                if (activity == true)
+                    return Ok(activity);
+                else
+                    return NoContent();
+            } catch (Exception ex) {
+                return StatusCode(500, $"Error: {ex.Message}");
+            }
+        }
+        #endregion
     }
 }

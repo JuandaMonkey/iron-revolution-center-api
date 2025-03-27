@@ -8,7 +8,6 @@ using System.Threading.Tasks;
 
 namespace iron_revolution_center_api.DTOs.User
 {
-    // db.
     public class ModifyPassworDTO
     {
         [Required(ErrorMessage = "Se requiere la contraseña.")] // required
