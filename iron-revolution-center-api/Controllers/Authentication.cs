@@ -30,7 +30,7 @@ namespace iron_revolution_center_api.Controllers
                 var user = await _usersService.Login(login);
 
                 if (user != null)
-                    return Ok(user);
+                    return Ok(new { token = user });
                 else
                     return NoContent();
             } catch (Exception ex) {

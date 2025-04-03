@@ -3,28 +3,20 @@
   "WorkspaceRootPath": "C:\\Users\\juand\\OneDrive\\Escritorio\\iron-revolution-center\\iron-revolution-center-api\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{553B9F67-69F9-4DCC-A9AF-DF56377875E3}|iron-revolution-center-api.Data\\iron-revolution-center-api.Data.csproj|c:\\users\\juand\\onedrive\\escritorio\\iron-revolution-center\\iron-revolution-center-api\\iron-revolution-center-api.data\\services\\usersservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{553B9F67-69F9-4DCC-A9AF-DF56377875E3}|iron-revolution-center-api.Data\\iron-revolution-center-api.Data.csproj|solutionrelative:iron-revolution-center-api.data\\services\\usersservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{553B9F67-69F9-4DCC-A9AF-DF56377875E3}|iron-revolution-center-api.Data\\iron-revolution-center-api.Data.csproj|c:\\users\\juand\\onedrive\\escritorio\\iron-revolution-center\\iron-revolution-center-api\\iron-revolution-center-api.data\\services\\statisticsservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{553B9F67-69F9-4DCC-A9AF-DF56377875E3}|iron-revolution-center-api.Data\\iron-revolution-center-api.Data.csproj|solutionrelative:iron-revolution-center-api.data\\services\\statisticsservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B22C74A8-E72A-4262-908C-98EE071165F2}|iron-revolution-center-api.DTOs\\iron-revolution-center-api.DTOs.csproj|c:\\users\\juand\\onedrive\\escritorio\\iron-revolution-center\\iron-revolution-center-api\\iron-revolution-center-api.dtos\\user\\login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B22C74A8-E72A-4262-908C-98EE071165F2}|iron-revolution-center-api.DTOs\\iron-revolution-center-api.DTOs.csproj|solutionrelative:iron-revolution-center-api.dtos\\user\\login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{553B9F67-69F9-4DCC-A9AF-DF56377875E3}|iron-revolution-center-api.Data\\iron-revolution-center-api.Data.csproj|c:\\users\\juand\\onedrive\\escritorio\\iron-revolution-center\\iron-revolution-center-api\\iron-revolution-center-api.data\\services\\activity_centerservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{553B9F67-69F9-4DCC-A9AF-DF56377875E3}|iron-revolution-center-api.Data\\iron-revolution-center-api.Data.csproj|solutionrelative:iron-revolution-center-api.data\\services\\activity_centerservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3BE0F51E-0616-4418-B286-EDCCBE5648C5}|iron-revolution-center-api\\iron-revolution-center-api.csproj|c:\\users\\juand\\onedrive\\escritorio\\iron-revolution-center\\iron-revolution-center-api\\iron-revolution-center-api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{3BE0F51E-0616-4418-B286-EDCCBE5648C5}|iron-revolution-center-api\\iron-revolution-center-api.csproj|solutionrelative:iron-revolution-center-api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+      "AbsoluteMoniker": "D:0:0:{B22C74A8-E72A-4262-908C-98EE071165F2}|iron-revolution-center-api.DTOs\\iron-revolution-center-api.DTOs.csproj|c:\\users\\juand\\onedrive\\escritorio\\iron-revolution-center\\iron-revolution-center-api\\iron-revolution-center-api.dtos\\activity_center\\entryclientdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B22C74A8-E72A-4262-908C-98EE071165F2}|iron-revolution-center-api.DTOs\\iron-revolution-center-api.DTOs.csproj|solutionrelative:iron-revolution-center-api.dtos\\activity_center\\entryclientdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3BE0F51E-0616-4418-B286-EDCCBE5648C5}|iron-revolution-center-api\\iron-revolution-center-api.csproj|c:\\users\\juand\\onedrive\\escritorio\\iron-revolution-center\\iron-revolution-center-api\\iron-revolution-center-api\\controllers\\authentication.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3BE0F51E-0616-4418-B286-EDCCBE5648C5}|iron-revolution-center-api\\iron-revolution-center-api.csproj|solutionrelative:iron-revolution-center-api\\controllers\\authentication.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{553B9F67-69F9-4DCC-A9AF-DF56377875E3}|iron-revolution-center-api.Data\\iron-revolution-center-api.Data.csproj|c:\\users\\juand\\onedrive\\escritorio\\iron-revolution-center\\iron-revolution-center-api\\iron-revolution-center-api.data\\interfaces\\iusersservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{553B9F67-69F9-4DCC-A9AF-DF56377875E3}|iron-revolution-center-api.Data\\iron-revolution-center-api.Data.csproj|solutionrelative:iron-revolution-center-api.data\\interfaces\\iusersservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3BE0F51E-0616-4418-B286-EDCCBE5648C5}|iron-revolution-center-api\\iron-revolution-center-api.csproj|c:\\users\\juand\\onedrive\\escritorio\\iron-revolution-center\\iron-revolution-center-api\\iron-revolution-center-api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3BE0F51E-0616-4418-B286-EDCCBE5648C5}|iron-revolution-center-api\\iron-revolution-center-api.csproj|solutionrelative:iron-revolution-center-api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{3BE0F51E-0616-4418-B286-EDCCBE5648C5}|iron-revolution-center-api\\iron-revolution-center-api.csproj|c:\\users\\juand\\onedrive\\escritorio\\iron-revolution-center\\iron-revolution-center-api\\iron-revolution-center-api\\controllers\\activity_centercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3BE0F51E-0616-4418-B286-EDCCBE5648C5}|iron-revolution-center-api\\iron-revolution-center-api.csproj|solutionrelative:iron-revolution-center-api\\controllers\\activity_centercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -34,7 +26,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 35,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Bookmark",
@@ -42,80 +34,54 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "iUsersService.cs",
-              "DocumentMoniker": "C:\\Users\\juand\\OneDrive\\Escritorio\\iron-revolution-center\\iron-revolution-center-api\\iron-revolution-center-api.Data\\Interfaces\\iUsersService.cs",
-              "RelativeDocumentMoniker": "iron-revolution-center-api.Data\\Interfaces\\iUsersService.cs",
-              "ToolTip": "C:\\Users\\juand\\OneDrive\\Escritorio\\iron-revolution-center\\iron-revolution-center-api\\iron-revolution-center-api.Data\\Interfaces\\iUsersService.cs",
-              "RelativeToolTip": "iron-revolution-center-api.Data\\Interfaces\\iUsersService.cs",
-              "ViewState": "AgIAABQAAAAAAAAAAAA9wCIAAAAaAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-01T17:57:40.52Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "UsersService.cs",
-              "DocumentMoniker": "C:\\Users\\juand\\OneDrive\\Escritorio\\iron-revolution-center\\iron-revolution-center-api\\iron-revolution-center-api.Data\\Services\\UsersService.cs",
-              "RelativeDocumentMoniker": "iron-revolution-center-api.Data\\Services\\UsersService.cs",
-              "ToolTip": "C:\\Users\\juand\\OneDrive\\Escritorio\\iron-revolution-center\\iron-revolution-center-api\\iron-revolution-center-api.Data\\Services\\UsersService.cs",
-              "RelativeToolTip": "iron-revolution-center-api.Data\\Services\\UsersService.cs",
-              "ViewState": "AgIAAGQAAAAAAAAAAAAjwG0AAAAMAAAAAAAAAA==",
+              "Title": "StatisticsService.cs",
+              "DocumentMoniker": "C:\\Users\\juand\\OneDrive\\Escritorio\\iron-revolution-center\\iron-revolution-center-api\\iron-revolution-center-api.Data\\Services\\StatisticsService.cs",
+              "RelativeDocumentMoniker": "iron-revolution-center-api.Data\\Services\\StatisticsService.cs",
+              "ToolTip": "C:\\Users\\juand\\OneDrive\\Escritorio\\iron-revolution-center\\iron-revolution-center-api\\iron-revolution-center-api.Data\\Services\\StatisticsService.cs",
+              "RelativeToolTip": "iron-revolution-center-api.Data\\Services\\StatisticsService.cs",
+              "ViewState": "AgIAAGYAAAAAAAAAAAAAAF4AAABUAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-01T17:54:34.91Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Authentication.cs",
-              "DocumentMoniker": "C:\\Users\\juand\\OneDrive\\Escritorio\\iron-revolution-center\\iron-revolution-center-api\\iron-revolution-center-api\\Controllers\\Authentication.cs",
-              "RelativeDocumentMoniker": "iron-revolution-center-api\\Controllers\\Authentication.cs",
-              "ToolTip": "C:\\Users\\juand\\OneDrive\\Escritorio\\iron-revolution-center\\iron-revolution-center-api\\iron-revolution-center-api\\Controllers\\Authentication.cs",
-              "RelativeToolTip": "iron-revolution-center-api\\Controllers\\Authentication.cs",
-              "ViewState": "AgIAABAAAAAAAAAAAAAewBoAAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-01T17:51:42.753Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Login.cs",
-              "DocumentMoniker": "C:\\Users\\juand\\OneDrive\\Escritorio\\iron-revolution-center\\iron-revolution-center-api\\iron-revolution-center-api.DTOs\\User\\Login.cs",
-              "RelativeDocumentMoniker": "iron-revolution-center-api.DTOs\\User\\Login.cs",
-              "ToolTip": "C:\\Users\\juand\\OneDrive\\Escritorio\\iron-revolution-center\\iron-revolution-center-api\\iron-revolution-center-api.DTOs\\User\\Login.cs",
-              "RelativeToolTip": "iron-revolution-center-api.DTOs\\User\\Login.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAAAgAAAAEAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-01T18:07:08.591Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\juand\\OneDrive\\Escritorio\\iron-revolution-center\\iron-revolution-center-api\\iron-revolution-center-api\\Program.cs",
-              "RelativeDocumentMoniker": "iron-revolution-center-api\\Program.cs",
-              "ToolTip": "C:\\Users\\juand\\OneDrive\\Escritorio\\iron-revolution-center\\iron-revolution-center-api\\iron-revolution-center-api\\Program.cs",
-              "RelativeToolTip": "iron-revolution-center-api\\Program.cs",
-              "ViewState": "AgIAAEsAAAAAAAAAAAAowCMAAAATAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-01T17:50:08.081Z",
+              "WhenOpened": "2025-04-03T23:09:34.539Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "appsettings.json",
-              "DocumentMoniker": "C:\\Users\\juand\\OneDrive\\Escritorio\\iron-revolution-center\\iron-revolution-center-api\\iron-revolution-center-api\\appsettings.json",
-              "RelativeDocumentMoniker": "iron-revolution-center-api\\appsettings.json",
-              "ToolTip": "C:\\Users\\juand\\OneDrive\\Escritorio\\iron-revolution-center\\iron-revolution-center-api\\iron-revolution-center-api\\appsettings.json",
-              "RelativeToolTip": "iron-revolution-center-api\\appsettings.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAABIAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-04-01T17:49:26.394Z",
+              "Title": "EntryClientDTO.cs",
+              "DocumentMoniker": "C:\\Users\\juand\\OneDrive\\Escritorio\\iron-revolution-center\\iron-revolution-center-api\\iron-revolution-center-api.DTOs\\Activity_Center\\EntryClientDTO.cs",
+              "RelativeDocumentMoniker": "iron-revolution-center-api.DTOs\\Activity_Center\\EntryClientDTO.cs",
+              "ToolTip": "C:\\Users\\juand\\OneDrive\\Escritorio\\iron-revolution-center\\iron-revolution-center-api\\iron-revolution-center-api.DTOs\\Activity_Center\\EntryClientDTO.cs",
+              "RelativeToolTip": "iron-revolution-center-api.DTOs\\Activity_Center\\EntryClientDTO.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-03T23:05:01.013Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Activity_CenterService.cs",
+              "DocumentMoniker": "C:\\Users\\juand\\OneDrive\\Escritorio\\iron-revolution-center\\iron-revolution-center-api\\iron-revolution-center-api.Data\\Services\\Activity_CenterService.cs",
+              "RelativeDocumentMoniker": "iron-revolution-center-api.Data\\Services\\Activity_CenterService.cs",
+              "ToolTip": "C:\\Users\\juand\\OneDrive\\Escritorio\\iron-revolution-center\\iron-revolution-center-api\\iron-revolution-center-api.Data\\Services\\Activity_CenterService.cs",
+              "RelativeToolTip": "iron-revolution-center-api.Data\\Services\\Activity_CenterService.cs",
+              "ViewState": "AgIAAFYAAAAAAAAAAADgvwEBAAArAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-03T23:00:05.109Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Activity_CenterController.cs",
+              "DocumentMoniker": "C:\\Users\\juand\\OneDrive\\Escritorio\\iron-revolution-center\\iron-revolution-center-api\\iron-revolution-center-api\\Controllers\\Activity_CenterController.cs",
+              "RelativeDocumentMoniker": "iron-revolution-center-api\\Controllers\\Activity_CenterController.cs",
+              "ToolTip": "C:\\Users\\juand\\OneDrive\\Escritorio\\iron-revolution-center\\iron-revolution-center-api\\iron-revolution-center-api\\Controllers\\Activity_CenterController.cs",
+              "RelativeToolTip": "iron-revolution-center-api\\Controllers\\Activity_CenterController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-03T22:59:59.306Z",
               "EditorCaption": ""
             }
           ]

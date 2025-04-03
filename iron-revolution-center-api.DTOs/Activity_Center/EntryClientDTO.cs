@@ -15,7 +15,7 @@ namespace iron_revolution_center_api.DTOs.Activity_Center
 
         public DateTime Entrada { get; set; } 
 
-        public DateTime Salida { get; set; } 
+        public DateTime? Salida { get; set; } 
 
         [Required(ErrorMessage = "Se requiere el ID de la sucursal.")] 
         public BranchesModel? Sucursal { get; set; }

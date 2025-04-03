@@ -86,38 +86,19 @@ namespace iron_revolution_center_api.Data.Services
             try
             {
                 var filterBuilder = Builders<Activity_CenterModel>.Filter;
-                var filter = new List<FilterDefinition<Activity_CenterModel>>();
+                var filter = filterBuilder.Empty;
 
                 if (!string.IsNullOrEmpty(branchId))
-                    filter.Add(filterBuilder.Eq(activity_center => activity_center.Sucursal.Sucursal_Id, branchId));
+                    filter &= filterBuilder.Eq(activity_center => activity_center.Sucursal.Sucursal_Id, branchId);
 
-                DateTime entry = DateTime.UtcNow;
-                DateTime exit = DateTime.UtcNow.AddHours(24);
+                filter &= filterBuilder.Lte(activity_center => activity_center.Entrada, DateTime.UtcNow) &
+                 (filterBuilder.Eq(activity_center => activity_center.Salida, null));
 
-                filter.Add(filterBuilder.Gte(activity_center => activity_center.Entrada, entry));
-                filter.Add(filterBuilder.Lte(activity_center => activity_center.Salida, exit));
-
-                var dateFilter = filterBuilder.Or(
-                    filterBuilder.And(
-                        filterBuilder.Gte(activity_center => activity_center.Entrada, entry),
-                        filterBuilder.Lte(activity_center => activity_center.Entrada, exit)
-                    ),
-                    filterBuilder.And(
-                        filterBuilder.Gte(activity_center => activity_center.Salida, entry),
-                        filterBuilder.Lte(activity_center => activity_center.Salida, exit)
-                    )
-                );
-
-                filter.Add(dateFilter);
-
-                var filters = filter.Any() ? filterBuilder.And(filter) : filterBuilder.Empty;
-
-                var active = await _activityCenterCollection
-                    .CountDocumentsAsync(filters);
+                var activeCount = await _activityCenterCollection.CountDocumentsAsync(filter);
 
                 return new activeClientsDTO
                 {
-                    Active_Clients = active
+                    Active_Clients = activeCount
                 };
             } catch (MongoException ex) {
                 throw new InvalidOperationException($"Error al contar clientes. {ex}");
