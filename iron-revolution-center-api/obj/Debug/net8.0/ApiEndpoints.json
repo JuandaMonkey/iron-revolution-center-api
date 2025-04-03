@@ -63,6 +63,22 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "iron_revolution_center_api.Controllers.Authentication",
+    "Method": "Login",
+    "RelativePath": "api/auth/login",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "login",
+        "Type": "iron_revolution_center_api.DTOs.User.Login",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "iron_revolution_center_api.Controllers.BranchesController",
     "Method": "DeleteBranch",
     "RelativePath": "api/Branches/Eliminar-Sucursal",
@@ -128,7 +144,7 @@
   {
     "ContainingType": "iron_revolution_center_api.Controllers.ClientsController",
     "Method": "GetClientByNIP",
-    "RelativePath": "api/Clients/Consultar-Cliente-Por-NIP",
+    "RelativePath": "api/Clients/ConsultarClientePorNIP",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -144,7 +160,7 @@
   {
     "ContainingType": "iron_revolution_center_api.Controllers.ClientsController",
     "Method": "DeleteClient",
-    "RelativePath": "api/Clients/Eliminar-Cliente",
+    "RelativePath": "api/Clients/EliminarCliente",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
@@ -202,7 +218,7 @@
   {
     "ContainingType": "iron_revolution_center_api.Controllers.ClientsController",
     "Method": "ModifyClient",
-    "RelativePath": "api/Clients/Modificar-Cliente",
+    "RelativePath": "api/Clients/ModificarCliente",
     "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
@@ -223,7 +239,7 @@
   {
     "ContainingType": "iron_revolution_center_api.Controllers.ClientsController",
     "Method": "RegisterClient",
-    "RelativePath": "api/Clients/Registrar-Cliente",
+    "RelativePath": "api/Clients/RegistrarCliente",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -231,22 +247,6 @@
       {
         "Name": "clientDTO",
         "Type": "iron_revolution_center_api.DTOs.Client.newClientModel",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "iron_revolution_center_api.Controllers.DashboardController",
-    "Method": "Dashboard",
-    "RelativePath": "api/Dashboard/InformacionDashboard/{branchId}",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "branchId",
-        "Type": "System.String",
         "IsRequired": true
       }
     ],
@@ -397,7 +397,7 @@
   {
     "ContainingType": "iron_revolution_center_api.Controllers.MembershipsController",
     "Method": "AssignMembership",
-    "RelativePath": "api/Memberships/Asignar-Membres\u00EDa",
+    "RelativePath": "api/Memberships/AsignarMembresia",
     "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
@@ -537,6 +537,54 @@
         "Name": "roleDTO",
         "Type": "iron_revolution_center_api.DTOs.Role.ModifyRoleDTO",
         "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "iron_revolution_center_api.Controllers.StatisticsController",
+    "Method": "getActiveClients",
+    "RelativePath": "api/Statistics/ClientesActivos",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "branchId",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "iron_revolution_center_api.Controllers.StatisticsController",
+    "Method": "getRegisteredClients",
+    "RelativePath": "api/Statistics/ClientesRegistrados",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "branchId",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "iron_revolution_center_api.Controllers.StatisticsController",
+    "Method": "getRegisteredEmployees",
+    "RelativePath": "api/Statistics/EmpleadosRegistrados",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "branchId",
+        "Type": "System.String",
+        "IsRequired": false
       }
     ],
     "ReturnTypes": []

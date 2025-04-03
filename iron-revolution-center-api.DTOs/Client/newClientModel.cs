@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -9,7 +10,7 @@ namespace iron_revolution_center_api.DTOs.Client
 {
     public class newClientModel
     {
-        public byte[]? Foto { get; set; }  // photo
+        public string? Foto { get; set; }  // photo
 
         [Required(ErrorMessage = "Se requiere el nombre completo.")] // required
         [StringLength(500, MinimumLength = 3, ErrorMessage = "El nombre completo debe tener entre 3 y 500 caracteres.")] // length

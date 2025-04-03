@@ -54,3 +54,5 @@ C:\Users\juand\OneDrive\Escritorio\iron-revolution-center\iron-revolution-center
 C:\Users\juand\OneDrive\Escritorio\iron-revolution-center\iron-revolution-center-api\iron-revolution-center-api\obj\Debug\net8.0\iron-revolution-center-api.pdb
 C:\Users\juand\OneDrive\Escritorio\iron-revolution-center\iron-revolution-center-api\iron-revolution-center-api\obj\Debug\net8.0\iron-revolution-center-api.genruntimeconfig.cache
 C:\Users\juand\OneDrive\Escritorio\iron-revolution-center\iron-revolution-center-api\iron-revolution-center-api\obj\Debug\net8.0\ref\iron-revolution-center-api.dll
+C:\Users\juand\OneDrive\Escritorio\iron-revolution-center\iron-revolution-center-api\iron-revolution-center-api\bin\Debug\net8.0\Microsoft.Extensions.Configuration.Abstractions.dll
+C:\Users\juand\OneDrive\Escritorio\iron-revolution-center\iron-revolution-center-api\iron-revolution-center-api\bin\Debug\net8.0\Microsoft.Extensions.Primitives.dll

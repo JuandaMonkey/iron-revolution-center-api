@@ -10,7 +10,7 @@ namespace iron_revolution_center_api.Models
     {
         public string? NIP { get; set; } // identifier
 
-        public byte[]? Foto { get; set; } // photo
+        public string? Foto { get; set; } // photo
 
         public string? Clave_Seguridad { get; set; } // segurity key
 

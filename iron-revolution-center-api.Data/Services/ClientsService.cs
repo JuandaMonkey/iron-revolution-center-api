@@ -60,6 +60,8 @@ namespace iron_revolution_center_api.Data.Service
         {
             try
             {
+                if (string.IsNullOrEmpty(NIP)) return true;
+
                 // check client 
                 var NIPIsAlreadyUsed = await _clientsCollection
                     .CountDocumentsAsync(client => client.NIP == NIP);
@@ -117,6 +119,13 @@ namespace iron_revolution_center_api.Data.Service
                 // if not in used
                 return false;
             }
+        }
+
+        private async Task<byte[]> GetBytesFromFile(IFormFile file)
+        {
+            using var memoryStream = new MemoryStream();
+            await file.CopyToAsync(memoryStream);
+            return memoryStream.ToArray();
         }
         #endregion
 
@@ -208,6 +217,10 @@ namespace iron_revolution_center_api.Data.Service
                 throw new ArgumentException($"El ID: {clientDTO.sucursal_Id} no existe.");
             try
             {
+                byte[]? fotoBytes = null;
+                if (!string.IsNullOrEmpty(clientDTO.Foto))
+                    fotoBytes = Convert.FromBase64String(clientDTO.Foto);
+
                 // generate a unique nip
                 string NIP;
                 do
@@ -228,7 +241,7 @@ namespace iron_revolution_center_api.Data.Service
                 var newClient = new RegisterClientDTO
                 {
                     NIP = NIP,
-                    Foto = clientDTO.Foto,
+                    Foto = fotoBytes,
                     Clave_Seguridad = SegurityKey,
                     Nombre_Completo = clientDTO.Nombre_Completo,
                     Celular = clientDTO.Celular,
@@ -280,12 +293,8 @@ namespace iron_revolution_center_api.Data.Service
                     updateDefinitions.Add(updateBuilder
                                      .Set(client => client.Nombre_Completo, clientDTO.Nombre_Completo));
                 if (!string.IsNullOrEmpty(clientDTO.Celular)) // phone
-                {
-                    if (await IsPhoneAlreadyUsed(clientDTO.Celular))
-                        throw new ArgumentException($"Número de celular: {clientDTO.Celular} ya en uso");
                     updateDefinitions.Add(updateBuilder
-                                     .Set(client => client.Celular, clientDTO.Celular));
-                }
+                                         .Set(client => client.Celular, clientDTO.Celular));
                 if (!string.IsNullOrEmpty(clientDTO.Observacion)) // observation
                     updateDefinitions.Add(updateBuilder
                                      .Set(client => client.Observacion, clientDTO.Observacion));

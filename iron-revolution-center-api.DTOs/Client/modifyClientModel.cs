@@ -9,7 +9,7 @@ namespace iron_revolution_center_api.DTOs.Client
 {
     public class modifyClientModel
     {
-        public byte[]? Foto { get; set; } // photo
+        public string? Foto { get; set; } // photo
 
         [StringLength(500, MinimumLength = 3, ErrorMessage = "El nombre completo debe tener entre 3 y 500 caracteres.")] // length
         public string? Nombre_Completo { get; set; }  // full name

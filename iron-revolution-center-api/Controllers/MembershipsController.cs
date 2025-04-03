@@ -92,8 +92,8 @@ namespace iron_revolution_center_api.Controllers
         #endregion
 
         #region AssignMembership
-        [HttpPut("Asignar-Membresía")]
-        public async Task<IActionResult> AssignMembership([FromHeader] string NIP, [FromHeader] string membershipID)
+        [HttpPut("AsignarMembresia")]
+        public async Task<IActionResult> AssignMembership(string NIP, string membershipID)
         {
             try
             {

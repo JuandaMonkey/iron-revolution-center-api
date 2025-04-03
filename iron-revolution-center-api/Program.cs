@@ -3,6 +3,7 @@ using iron_revolution_center_api.Data.Interfaces;
 using iron_revolution_center_api.Data.Service;
 using iron_revolution_center_api.Data.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Http.Features;
 using Microsoft.IdentityModel.Tokens;
 using MongoDB.Driver;
 using System.Text;
@@ -17,28 +18,22 @@ namespace iron_revolution_center_api
 
             #region JWT Configuration
             var jwtSettings = builder.Configuration.GetSection("JwtSettings");
-            var key = Encoding.UTF8.GetBytes(jwtSettings["SecretKey"]);
+            var secretKey = Encoding.UTF8.GetBytes(jwtSettings["SecretKey"]);
 
-            builder.Services.AddAuthentication(options =>
-            {
-                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-            }).AddJwtBearer(options =>
-            {
-                options.RequireHttpsMetadata = false;
-                options.SaveToken = true;
-                options.TokenValidationParameters = new TokenValidationParameters
+            builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer(options =>
                 {
-                    ValidateIssuerSigningKey = true,
-                    IssuerSigningKey = new SymmetricSecurityKey(key),
-                    ValidateIssuer = true,
-                    ValidIssuer = jwtSettings["Issuer"],
-                    ValidateAudience = true,
-                    ValidAudience = jwtSettings["Audience"],
-                    ValidateLifetime = true,
-                    ClockSkew = TimeSpan.Zero
-                };
-            });
+                    options.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ValidateIssuer = true,
+                        ValidateAudience = true,
+                        ValidateLifetime = true,
+                        ValidateIssuerSigningKey = true,
+                        ValidIssuer = jwtSettings["Issuer"],
+                        ValidAudience = jwtSettings["Audience"],
+                        IssuerSigningKey = new SymmetricSecurityKey(secretKey)
+                    };
+                });
 
             builder.Services.AddAuthorization();
             #endregion
@@ -66,7 +61,7 @@ namespace iron_revolution_center_api
             builder.Services.AddScoped<iEmployeesService, EmployeesService>(); // staff
             builder.Services.AddScoped<iUsersService, UsersService>(); // users
             builder.Services.AddScoped<iActivity_CenterService, Activity_CenterService>(); // activity center 
-            builder.Services.AddScoped<iDashboardService, DashboardService>();
+            builder.Services.AddScoped<iStatisticsService, StatisticsService>();
 
             builder.Services.AddCors(options =>
             {

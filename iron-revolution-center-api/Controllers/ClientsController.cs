@@ -56,7 +56,7 @@ namespace iron_revolution_center_api.Controllers
         #endregion
 
         #region RegisterClient
-        [HttpPost("Registrar-Cliente")]
+        [HttpPost("RegistrarCliente")]
         public async Task<IActionResult> RegisterClient([FromBody] newClientModel clientDTO)
         {
             try
@@ -74,8 +74,8 @@ namespace iron_revolution_center_api.Controllers
         #endregion
 
         #region ModifyClient
-        [HttpPut("Modificar-Cliente")]
-        public async Task<IActionResult> ModifyClient([FromHeader] string NIP, [FromBody] modifyClientModel clientDTO)
+        [HttpPut("ModificarCliente")]
+        public async Task<IActionResult> ModifyClient(string NIP, [FromBody] modifyClientModel clientDTO)
         {
             try
             {
@@ -92,8 +92,8 @@ namespace iron_revolution_center_api.Controllers
         #endregion
 
         #region DeleteClient
-        [HttpDelete("Eliminar-Cliente")]
-        public async Task<IActionResult> DeleteClient([FromHeader] string NIP)
+        [HttpDelete("EliminarCliente")]
+        public async Task<IActionResult> DeleteClient(string NIP)
         {
             try
             {

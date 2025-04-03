@@ -11,7 +11,7 @@ namespace iron_revolution_center_api.DTOs.Client
 {
     public class ModifyClientDTO
     {
-        public byte[]? Foto { get; set; } // photo
+        public string? Foto { get; set; } // photo
 
         public string? Nombre_Completo { get; set; }  // full name
 

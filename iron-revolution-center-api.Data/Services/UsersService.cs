@@ -2,12 +2,16 @@
 using iron_revolution_center_api.DTOs.Client;
 using iron_revolution_center_api.DTOs.User;
 using iron_revolution_center_api.Models;
+using Microsoft.Extensions.Configuration;
+using Microsoft.IdentityModel.Tokens;
 using MongoDB.Bson;
 using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
+using System.Security.Claims;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -19,6 +23,7 @@ namespace iron_revolution_center_api.Data.Service
     {
         #region MongoDB Configuration
         private readonly IMongoDatabase _mongoDatabase;
+        private readonly IConfiguration _config;
         private readonly IMongoCollection<UsersModel> _usersCollection;
         private readonly IMongoCollection<RegisterUserDTO> _registerUserCollection;
         private readonly IMongoCollection<RolesModel> _rolesCollection;
@@ -46,9 +51,10 @@ namespace iron_revolution_center_api.Data.Service
             return Builders<ClientsModel>.Projection.Exclude("_id");
         }
 
-        public UsersService(IMongoDatabase mongoDatabase)
+        public UsersService(IMongoDatabase mongoDatabase, IConfiguration config)
         {
             _mongoDatabase = mongoDatabase;
+            _config = config;
             _usersCollection = _mongoDatabase.GetCollection<UsersModel>("Users");
             _registerUserCollection = _mongoDatabase.GetCollection<RegisterUserDTO>("Users");
             _rolesCollection = _mongoDatabase.GetCollection<RolesModel>("Roles");
@@ -87,6 +93,59 @@ namespace iron_revolution_center_api.Data.Service
             } catch {
                 // if not exist
                 return false;
+            }
+        }
+        #endregion
+
+        #region JWT
+        private string generateJwtToken(UsersModel user)
+        {
+            var jwtSettings = _config.GetSection("JwtSettings");
+            var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSettings["SecretKey"]));
+
+            var claims = new List<Claim>
+            {
+                new Claim(ClaimTypes.Name, user.Nombre_Usuario),
+                new Claim(ClaimTypes.Role, user.Rol)
+            };
+
+            if (!string.IsNullOrEmpty(user.NIP))
+                claims.Add(new Claim("NIP", user.NIP));
+
+            var token = new JwtSecurityToken(
+                issuer: jwtSettings["Issuer"],
+                audience: jwtSettings["Audience"],
+                claims: claims,
+                expires: DateTime.UtcNow.AddHours(24),
+                signingCredentials: new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256)
+            );
+
+            return new JwtSecurityTokenHandler().WriteToken(token);
+        }
+        public async Task<string> Login(Login login)
+        {
+            if (string.IsNullOrEmpty(login.Nombre_Usuario) || string.IsNullOrEmpty(login.Contraseña))
+                throw new ArgumentException("El nombre de usuario y la contraseña no pueden estar vacíos.");
+            try
+            {
+                var user = await _usersCollection
+                .Find(user => user.Nombre_Usuario == login.Nombre_Usuario)
+                .Project<UsersModel>(ExcludeIdProjection())
+                .FirstOrDefaultAsync();
+
+                if (user == null)
+                    throw new ArgumentException($"Usuario '{login.Nombre_Usuario}' no encontrado.");
+
+                if (!BCrypt.Net.BCrypt.Verify(login.Contraseña, user.Contraseña))
+                    throw new ArgumentException("Contraseña incorrecta.");
+
+                var jwt = generateJwtToken(user);
+
+                return jwt;
+            } catch (MongoException ex) {
+                throw new InvalidOperationException($"Error al iniciar sesión. {ex.Message}");
+            } catch (ArgumentException ex) {
+                throw new ArgumentException($"Error: {ex.Message}");
             }
         }
         #endregion

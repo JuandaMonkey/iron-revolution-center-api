@@ -31,5 +31,7 @@ namespace iron_revolution_center_api.Data.Interface
 
         // delete user
         public Task<ShowUserDTO> DeleteUser(string userName);
+
+        public Task<string> Login(Login login);
     }
 }
