@@ -42,7 +42,7 @@ namespace iron_revolution_center_api.Controllers
 
         #region RegisterEntry
         [HttpPost("Registrar-Entrada")]
-        public async Task<IActionResult> RegisterEntry([FromHeader] string NIP, string securityKey, [FromHeader] string branchiD)
+        public async Task<IActionResult> RegisterEntry(string NIP, string securityKey, [FromHeader] string branchiD)
         {
             try
             {
@@ -60,7 +60,7 @@ namespace iron_revolution_center_api.Controllers
 
         #region RegisterExit
         [HttpPut("Registrar-Salida")]
-        public async Task<IActionResult> RegisterExit([FromHeader] string NIP)
+        public async Task<IActionResult> RegisterExit(string NIP)
         {
             try
             {

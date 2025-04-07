@@ -28,13 +28,15 @@ namespace iron_revolution_center_api.Controllers
             try
             {
                 var user = await _usersService.Login(login);
+                if (user == null)
+                    return Unauthorized("Credenciales inválidas");
 
-                if (user != null)
-                    return Ok(new { token = user });
-                else
-                    return NoContent();
-            } catch (Exception ex) {
-                return StatusCode(500, $"Error: {ex.Message}");
+                return Ok(new { token = user });
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"ERROR EN LOGIN: {ex.ToString()}");
+                return StatusCode(500, "Error interno - revisar logs");
             }
         }
     }
