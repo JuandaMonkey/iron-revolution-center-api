@@ -39,6 +39,11 @@
         "IsRequired": false
       },
       {
+        "Name": "securityKey",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
         "Name": "branchiD",
         "Type": "System.String",
         "IsRequired": false
@@ -334,7 +339,7 @@
   {
     "ContainingType": "iron_revolution_center_api.Controllers.ExercisesController",
     "Method": "DeleteExercises",
-    "RelativePath": "api/Exercises/Eliminar-Ejercicio",
+    "RelativePath": "api/Exercises/EliminarEjercicio",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
@@ -366,7 +371,7 @@
   {
     "ContainingType": "iron_revolution_center_api.Controllers.ExercisesController",
     "Method": "ListExercises",
-    "RelativePath": "api/Exercises/Listar-Ejercicios",
+    "RelativePath": "api/Exercises/ListarEjercicios",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,

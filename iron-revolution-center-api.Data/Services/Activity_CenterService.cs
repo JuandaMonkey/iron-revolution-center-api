@@ -2,6 +2,7 @@
 using iron_revolution_center_api.DTOs.Activity_Center;
 using iron_revolution_center_api.DTOs.Staff;
 using iron_revolution_center_api.Models;
+using Microsoft.IdentityModel.Tokens;
 using MongoDB.Bson;
 using MongoDB.Driver;
 using System;
@@ -167,12 +168,20 @@ namespace iron_revolution_center_api.Data.Service
         #endregion
 
         #region RegisterEntry
-        public async Task<bool> RegisterEntry(string NIP, string branchId)
+        public async Task<bool> RegisterEntry(string NIP, string securityKey, string branchId)
         {
             if (string.IsNullOrWhiteSpace(NIP))
                 throw new ArgumentException("El NIP no puede estar vacío.");
             if (!await IsClientRegistered(NIP))
                 throw new ArgumentException($"NIP {NIP} no existe.");
+            if (!string.IsNullOrWhiteSpace(securityKey))
+                throw new ArgumentException("La clave de seguridad no puede estar vacío.");
+            var clientSKey = await _clientsCollection
+                .Find(c => c.NIP == NIP)
+                .Project<ClientsModel>(ExcludeIdProjectionClient())
+                .FirstOrDefaultAsync();
+            if (clientSKey.Clave_Seguridad != securityKey)
+                throw new ArgumentException("Clave de seguridad incorrecta.");
             if (string.IsNullOrWhiteSpace(branchId))
                 throw new ArgumentException("Sucursal no puede estar vacío.");
             if (!await IsBranchValid(branchId))
@@ -186,14 +195,6 @@ namespace iron_revolution_center_api.Data.Service
                 if (!await HasActiveMembership(NIP))
                     throw new ArgumentException("No apto para entrar.");
 
-                var client = await _clientsCollection
-                    .Find(client => client.NIP == NIP)
-                    .Project<ClientsModel>(ExcludeIdProjectionClient())
-                    .FirstOrDefaultAsync();
-
-                if (client == null)
-                    throw new ArgumentException("Cliente no encontrado.");
-
                 var branch = await _branchesCollection
                     .Find(branch => branch.Sucursal_Id == branchId)
                     .Project<BranchesModel>(ExcludeIdProjectionBranch())
@@ -204,7 +205,7 @@ namespace iron_revolution_center_api.Data.Service
 
                 var clientEntry = new EntryClientDTO
                 {
-                    Cliente = client,
+                    Cliente = clientSKey,
                     Entrada = DateTime.UtcNow,
                     Salida = null, 
                     Sucursal = branch

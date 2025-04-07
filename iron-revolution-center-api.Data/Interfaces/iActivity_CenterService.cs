@@ -12,7 +12,7 @@ namespace iron_revolution_center_api.Data.Interface
     {
         public Task<IEnumerable<Activity_CenterModel>> ListActivityCenter(string branchId, DateTime startDay, DateTime endDay);
 
-        public Task<bool> RegisterEntry(string NIP, string branchId);
+        public Task<bool> RegisterEntry(string NIP, string securityKey, string branchId);
 
         public Task<bool> RegisterExit(string NIP);
     }

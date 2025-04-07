@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Http.Features;
 using Microsoft.IdentityModel.Tokens;
 using MongoDB.Driver;
+using System.Net;
 using System.Text;
 
 namespace iron_revolution_center_api
@@ -67,7 +68,7 @@ namespace iron_revolution_center_api
             {
                 options.AddPolicy("AllowFrontend", policy =>
                 {
-                    policy.WithOrigins("http://localhost:4200")
+                    policy.WithOrigins("http://localhost:4200", "https://iron-revolution-center-api.onrender.com")
                         .AllowAnyHeader()
                         .AllowAnyMethod();
                 });
@@ -81,12 +82,18 @@ namespace iron_revolution_center_api
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
+            else
+            {
+                app.UseHttpsRedirection();
+            }
 
             app.UseCors("AllowFrontend");
 
             app.UseHttpsRedirection();
 
             app.UseAuthentication();
+
+            app.UseAuthorization();
 
             app.MapControllers();
 

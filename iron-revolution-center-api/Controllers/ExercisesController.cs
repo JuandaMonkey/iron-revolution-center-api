@@ -70,7 +70,7 @@ namespace iron_revolution_center_api.Controllers
         #endregion
 
         #region DeleteExercises
-        [HttpDelete("Eliminar-Ejercicio")]
+        [HttpDelete("EliminarEjercicio")]
         public async Task<IActionResult> DeleteExercises(string exerciseId)
         {
             try

@@ -2,6 +2,7 @@
 using iron_revolution_center_api.Data.Service;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.IdentityModel.Tokens;
 using System.Globalization;
 
 namespace iron_revolution_center_api.Controllers
@@ -41,11 +42,11 @@ namespace iron_revolution_center_api.Controllers
 
         #region RegisterEntry
         [HttpPost("Registrar-Entrada")]
-        public async Task<IActionResult> RegisterEntry([FromHeader] string NIP, [FromHeader] string branchiD)
+        public async Task<IActionResult> RegisterEntry([FromHeader] string NIP, string securityKey, [FromHeader] string branchiD)
         {
             try
             {
-                var activity = await _activity_CenterService.RegisterEntry(NIP, branchiD);
+                var activity = await _activity_CenterService.RegisterEntry(NIP, securityKey, branchiD);
 
                 if (activity == true)
                     return Ok(activity);
