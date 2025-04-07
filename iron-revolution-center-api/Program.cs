@@ -68,7 +68,10 @@ namespace iron_revolution_center_api
             {
                 options.AddPolicy("AllowFrontend", policy =>
                 {
-                    policy.WithOrigins("http://localhost:4200", "https://iron-revolution-center-api.onrender.com", "https://iron-revolution-center-api.onrender.com/swagger")
+                    policy.WithOrigins("http://localhost:4200", 
+                        "https://iron-revolution-center-api.onrender.com", 
+                        "https://iron-revolution-center-api.onrender.com/swagger",
+                        "https://iron-revolution-center-api.onrender.com/api")
                         .AllowAnyHeader()
                         .AllowAnyMethod();
                 });
@@ -91,6 +94,7 @@ namespace iron_revolution_center_api
             app.MapControllers();
 
             app.Run("http://*:80");
+            //app.Run();
         }
     }
 }
