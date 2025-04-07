@@ -71,7 +71,7 @@ namespace iron_revolution_center_api
                     policy.WithOrigins("http://localhost:4200", 
                         "https://iron-revolution-center-api.onrender.com", 
                         "https://iron-revolution-center-api.onrender.com/swagger",
-                        "https://iron-revolution-center-api.onrender.com/api")
+                        "https://iron-revolution-center-api.onrender.com/api/")
                         .AllowAnyHeader()
                         .AllowAnyMethod();
                 });
