@@ -42,7 +42,7 @@ namespace iron_revolution_center_api.Controllers
 
         #region RegisterEntry
         [HttpPost("Registrar-Entrada")]
-        public async Task<IActionResult> RegisterEntry(string NIP, string securityKey, [FromHeader] string branchiD)
+        public async Task<IActionResult> RegisterEntry(string NIP, string securityKey, string branchiD)
         {
             try
             {
