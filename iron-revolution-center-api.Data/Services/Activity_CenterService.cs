@@ -174,7 +174,7 @@ namespace iron_revolution_center_api.Data.Service
                 throw new ArgumentException("El NIP no puede estar vacío.");
             if (!await IsClientRegistered(NIP))
                 throw new ArgumentException($"NIP {NIP} no existe.");
-            if (!string.IsNullOrWhiteSpace(securityKey))
+            if (string.IsNullOrWhiteSpace(securityKey))
                 throw new ArgumentException("La clave de seguridad no puede estar vacío.");
             var clientSKey = await _clientsCollection
                 .Find(c => c.NIP == NIP)

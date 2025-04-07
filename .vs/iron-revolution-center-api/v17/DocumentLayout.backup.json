@@ -44,7 +44,7 @@
               "RelativeDocumentMoniker": "iron-revolution-center-api\\Controllers\\Activity_CenterController.cs",
               "ToolTip": "C:\\Users\\juand\\OneDrive\\Escritorio\\iron-revolution-center\\iron-revolution-center-api\\iron-revolution-center-api\\Controllers\\Activity_CenterController.cs",
               "RelativeToolTip": "iron-revolution-center-api\\Controllers\\Activity_CenterController.cs",
-              "ViewState": "AgIAACcAAAAAAAAAAAAowDIAAAAlAAAAAAAAAA==",
+              "ViewState": "AgIAAEEAAAAAAAAAAAAIwCwAAABXAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-07T20:27:24.936Z",
               "EditorCaption": ""
@@ -59,8 +59,7 @@
               "RelativeToolTip": "iron-revolution-center-api\\Controllers\\Authentication.cs",
               "ViewState": "AgIAABQAAAAAAAAAAAAQwCQAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-07T16:33:11.809Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-07T16:33:11.809Z"
             },
             {
               "$type": "Document",
@@ -96,8 +95,7 @@
               "RelativeToolTip": "iron-revolution-center-api\\Properties\\launchSettings.json",
               "ViewState": "AgIAABAAAAAAAAAAAAAIwBwAAAA6AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-04-07T15:20:29.096Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-07T15:20:29.096Z"
             }
           ]
         }
