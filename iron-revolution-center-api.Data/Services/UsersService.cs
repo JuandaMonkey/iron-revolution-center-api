@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
+using System.Net.Http.Headers;
 using System.Security.Claims;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -24,6 +25,7 @@ namespace iron_revolution_center_api.Data.Service
         #region MongoDB Configuration
         private readonly IMongoDatabase _mongoDatabase;
         private readonly IConfiguration _config;
+        private readonly iClientsService _clientsServices;
         private readonly IMongoCollection<UsersModel> _usersCollection;
         private readonly IMongoCollection<RegisterUserDTO> _registerUserCollection;
         private readonly IMongoCollection<RolesModel> _rolesCollection;
@@ -51,19 +53,40 @@ namespace iron_revolution_center_api.Data.Service
             return Builders<ClientsModel>.Projection.Exclude("_id");
         }
 
-        public UsersService(IMongoDatabase mongoDatabase, IConfiguration config)
+        public UsersService(IMongoDatabase mongoDatabase, IConfiguration config, iClientsService clientsServices)
         {
             _mongoDatabase = mongoDatabase;
             _config = config;
+            _clientsServices = clientsServices;
             _usersCollection = _mongoDatabase.GetCollection<UsersModel>("Users");
             _registerUserCollection = _mongoDatabase.GetCollection<RegisterUserDTO>("Users");
             _rolesCollection = _mongoDatabase.GetCollection<RolesModel>("Roles");
             _employeesCollection = _mongoDatabase.GetCollection<EmployeesModel>("Employees");
             _clientsCollection = _mongoDatabase.GetCollection<ClientsModel>("Clients");
+            _clientsServices = clientsServices;
         }
         #endregion
 
         #region Validations
+        private async Task<bool> IsClientRegistered(string NIP)
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(NIP)) return true;
+
+                // check client 
+                var NIPIsAlreadyUsed = await _clientsCollection
+                    .CountDocumentsAsync(client => client.NIP == NIP);
+
+                // validate existence
+                return NIPIsAlreadyUsed > 0;
+            }
+            catch
+            {
+                // if not in used
+                return false;
+            }
+        }
         private async Task<bool> IsUserRegistered(string userName)
         {
             try
@@ -455,5 +478,36 @@ namespace iron_revolution_center_api.Data.Service
             }
         }
         #endregion
+
+        public async Task<bool> putAssignNIP(string NIP, string userName)
+        {
+            if (string.IsNullOrEmpty(NIP))
+                throw new ArgumentException($"El NIP no puede estar vacío.");
+            if (!await IsClientRegistered(NIP))
+                throw new ArgumentException($"El NIP: {NIP} no existe.");
+            if (string.IsNullOrEmpty(userName))
+                throw new ArgumentException("El nombre de usuario no puede estar vacío.");
+            if (!await IsUserRegistered(userName))
+                throw new ArgumentException($"El nombre de usuario: {userName} no existe.");
+            try
+            {
+                var client = await _clientsServices.GetClientByNIP(NIP);
+                var user = await _usersCollection
+                    .Find(user => user.Nombre_Usuario == userName)
+                    .Project<UsersModel>(ExcludeIdProjection())
+                    .FirstOrDefaultAsync();
+
+                if (user.NIP != null)
+                    throw new ArgumentException("Usuario ya asignado.");
+
+                user.NIP = client.NIP;
+
+                await _usersCollection.ReplaceOneAsync(user => user.Nombre_Usuario == userName, user);
+
+                return true;
+            } catch (MongoException ex) {
+                throw new InvalidOperationException($"Error al asignar NIP. {ex}");
+            }
+        }
     }
 }

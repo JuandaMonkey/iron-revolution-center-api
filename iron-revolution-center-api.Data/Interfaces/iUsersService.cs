@@ -33,5 +33,7 @@ namespace iron_revolution_center_api.Data.Interface
         public Task<ShowUserDTO> DeleteUser(string userName);
 
         public Task<string> Login(Login login);
+
+        public Task<bool> putAssignNIP(string NIP, string userName);
     }
 }

@@ -87,6 +87,12 @@ namespace iron_revolution_center_api.Data.Service
                 if (client == null)
                     throw new ArgumentException("Cliente no encontrado.");
 
+                if (string.IsNullOrEmpty(client.Membresia)) 
+                    throw new ArgumentException("El cliente no tiene membresía asignada.");
+
+                if (client.Fecha_Inicio == null || client.Fecha_Fin == null)
+                    throw new ArgumentException("Membresía sin fechas válidas.");
+
                 var dateNow = DateOnly.FromDateTime(DateTime.Now);
                 if (client.Fecha_Fin < dateNow)
                     throw new ArgumentException("Membresía finalizada.");

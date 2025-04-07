@@ -10,14 +10,10 @@ namespace iron_revolution_center_api.DTOs.Membership
 {
     public class InsertMembershipDTO
     {
-        public string? Membresia_Id { get; set; } // identification
+        public string? Membresia_Id { get; set; } 
 
-        [Required(ErrorMessage = "Se requiere el nombre.")] // required
-        [StringLength(100, MinimumLength = 3, ErrorMessage = "El nombre debe tener entre 3 y 100 caracteres.")] // length
-        public string? Nombre { get; set; } // name 
+        public string? Nombre { get; set; } 
 
-        [Required(ErrorMessage = "Se requiere la duración.")] // required
-        [Range(1, int.MaxValue, ErrorMessage = "La duración debe ser un número positivo.")]
-        public int? Duracion { get; set; } // duration membership in days
+        public int? Duracion { get; set; } 
     }
 }

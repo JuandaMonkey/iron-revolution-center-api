@@ -37,8 +37,8 @@ namespace iron_revolution_center_api.Controllers
         #endregion
 
         #region InsertMembership
-        [HttpPost("Insertar-Membresía")]
-        public async Task<IActionResult> InsertMembership([FromBody] InsertMembershipDTO membershipDTO)
+        [HttpPost("InsertarMembresia")]
+        public async Task<IActionResult> InsertMembership([FromBody] newMembershipDTO membershipDTO)
         {
             try
             {
@@ -56,8 +56,8 @@ namespace iron_revolution_center_api.Controllers
         #endregion
 
         #region ModifyMembership
-        [HttpPut("Modificar-Membresía")]
-        public async Task<IActionResult> ModifyMembership([FromHeader] string membershipID, [FromBody] ModifyMembershipDTO membershipDTO)
+        [HttpPut("ModificarMembresia")]
+        public async Task<IActionResult> ModifyMembership(string membershipID, [FromBody] ModifyMembershipDTO membershipDTO)
         {
             try
             {
@@ -74,8 +74,8 @@ namespace iron_revolution_center_api.Controllers
         #endregion
 
         #region DeleteMembership
-        [HttpDelete("Eliminar-Membresía")]
-        public async Task<IActionResult> DeleteMembership([FromHeader] string membershipID)
+        [HttpDelete("EliminarMembresia")]
+        public async Task<IActionResult> DeleteMembership(string membershipID)
         {
             try
             {

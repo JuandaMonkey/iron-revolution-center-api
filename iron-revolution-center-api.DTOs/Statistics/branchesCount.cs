@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 
 namespace iron_revolution_center_api.DTOs.Statistics
 {
-    public class activeClientsDTO
+    public class branchesCount
     {
-        public long Active_Clients { get; set; }
+        public string? ubicacion { get; set; }
+
+        public long conteo { get; set; }
     }
 }

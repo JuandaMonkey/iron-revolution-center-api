@@ -108,7 +108,7 @@ namespace iron_revolution_center_api.Data.Service
         #endregion
 
         #region InsertMembership
-        public async Task<InsertMembershipDTO> InsertMembership(InsertMembershipDTO membershipDTO)
+        public async Task<InsertMembershipDTO> InsertMembership(newMembershipDTO membershipDTO)
         {
             if (string.IsNullOrEmpty(membershipDTO.Nombre))
                 throw new ArgumentException($"El nombre no puede estar vacío.");
@@ -126,14 +126,12 @@ namespace iron_revolution_center_api.Data.Service
                     membershipId = $"M{num}";
                 } while (await IsMembershipIdAlreadyUsed(membershipId));
 
-                membershipDTO.Membresia_Id = membershipId;
-
                 Console.WriteLine($"ID: {membershipId}"); // id generated
 
                 // insert membership
                 var newMembership = new InsertMembershipDTO
                 {
-                    Membresia_Id = membershipDTO.Membresia_Id,
+                    Membresia_Id = membershipId,
                     Nombre = membershipDTO.Nombre,
                     Duracion = membershipDTO.Duracion
                 };

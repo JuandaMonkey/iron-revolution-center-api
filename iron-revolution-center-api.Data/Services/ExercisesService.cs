@@ -69,13 +69,21 @@ namespace iron_revolution_center_api.Data.Service
         #endregion
 
         #region ListExercises
-        public async Task<IEnumerable<ExercisesModel>> ListExercises()
+        public async Task<IEnumerable<ExercisesModel>> ListExercises(string exerciseType)
         {
             try
             {
+                var filterBuilder = Builders<ExercisesModel>.Filter;
+                var filter = new List<FilterDefinition<ExercisesModel>>();
+
+                if (!string.IsNullOrEmpty(exerciseType))
+                    filter.Add(filterBuilder.Eq(exercise => exercise.Tipo, exerciseType));
+
+                var filters = filter.Any() ? filterBuilder.And(filter) : filterBuilder.Empty;
+
                 // get exercises
                 return await _exercisesCollection
-                    .Find(FilterDefinition<ExercisesModel>.Empty)
+                    .Find(filters)
                     .Project<ExercisesModel>(ExcludeIdProjection())
                     .ToListAsync();
             } catch (MongoException ex) {
@@ -86,7 +94,7 @@ namespace iron_revolution_center_api.Data.Service
         #endregion
 
         #region RegisterExercises
-        public async Task<InsertExerciseDTO> InsertExercises(InsertExerciseDTO exerciseDTO)
+        public async Task<InsertExerciseDTO> InsertExercises(newExerciseDTO exerciseDTO)
         {
             if (string.IsNullOrEmpty(exerciseDTO.Nombre))
                 throw new ArgumentException($"El nombre no puede estar vacío.");
@@ -106,12 +114,10 @@ namespace iron_revolution_center_api.Data.Service
                     exerciseId = $"E{num}";
                 } while (await IsExerciseIdAlreadyUsed(exerciseId));
 
-                exerciseDTO.Ejercicio_Id = exerciseId;
-
                 // insert exercise
                 var newExercise = new InsertExerciseDTO
                 {
-                    Ejercicio_Id = exerciseDTO.Ejercicio_Id,
+                    Ejercicio_Id = exerciseId,
                     Foto = exerciseDTO.Foto,
                     Nombre = exerciseDTO.Nombre,
                     Tipo = exerciseDTO.Tipo,

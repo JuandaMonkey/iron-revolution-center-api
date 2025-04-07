@@ -11,8 +11,14 @@ namespace iron_revolution_center_api.Data.Interfaces
     {
         public Task<registeredClients> getRegisteredClients(string branchId);
 
-        public Task<activeClientsDTO> getActiveClients(string branchId);
+        public Task<activeClients> getActiveClients(string branchId);
 
         public Task<registeredEmployees> getRegisteredEmployees(string branchId);
+
+        public Task<IEnumerable<branchesCount>> getBranchesCount();
+
+        public Task<branchesCount> getMostFrecuentedBranch(string branchId);
+
+        public Task<IEnumerable<membershipsCount>> getMostPopularMemberships(string branchId);
     }
 }

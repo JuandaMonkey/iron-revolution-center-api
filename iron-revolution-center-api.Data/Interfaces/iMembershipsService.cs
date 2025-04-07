@@ -16,7 +16,7 @@ namespace iron_revolution_center_api.Data.Interface
         public Task<IEnumerable<MembershipsModel>> ListMemberships();
 
         // insert membership
-        public Task<InsertMembershipDTO> InsertMembership(InsertMembershipDTO membershipDTo);
+        public Task<InsertMembershipDTO> InsertMembership(newMembershipDTO membershipDTo);
 
         // modify membership
         public Task<MembershipsModel> ModifyMembership(string membershipId, ModifyMembershipDTO membershipDTO);

@@ -10,25 +10,18 @@ namespace iron_revolution_center_api.DTOs.Exercise
 {
     public class InsertExerciseDTO
     {
-        public string? Ejercicio_Id { get; set; } // identifier
+        public string? Ejercicio_Id { get; set; } 
 
-        public byte[]? Foto { get; set; } // photo
+        public byte[]? Foto { get; set; } 
 
-        [Required(ErrorMessage = "Se requiere el nombre.")] // required
-        public string? Nombre { get; set; } // name
+        public string? Nombre { get; set; } 
 
-        [Required(ErrorMessage = "Se requiere el tipo.")] // required
-        public string? Tipo { get; set; } // type
+        public string? Tipo { get; set; } 
 
-        [Required(ErrorMessage = "Se requiere una descripción.")] // required
-        public string? Descripcion { get; set; } // description
+        public string? Descripcion { get; set; }
 
-        [Required(ErrorMessage = "Se requiere las series.")] // required
-        [Range(1, int.MaxValue, ErrorMessage = "Las series deben ser un número positivo.")]
-        public int Series { get; set; }  // series
+        public int Series { get; set; }  
 
-        [Required(ErrorMessage = "Se requiere las repeticiones.")] // required
-        [Range(1, int.MaxValue, ErrorMessage = "Las repeticiones deben ser un número positivo.")]
-        public int Repeticiones { get; set; }  // repetitions
+        public int Repeticiones { get; set; } 
     }
 }

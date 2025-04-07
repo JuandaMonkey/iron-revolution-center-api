@@ -22,6 +22,22 @@ namespace iron_revolution_center_api.Controllers
             _userService = userService; 
         }
 
+        [HttpPut("AsignarNIP")]
+        public async Task<IActionResult> putAssignNIP(string NIP, string userName)
+        {
+            try
+            {
+                var users = await _userService.putAssignNIP(NIP, userName);
+
+                if (users != null)
+                    return Ok(users);
+                else
+                    return NoContent();
+            } catch (Exception ex) {
+                return StatusCode(500, $"Error: {ex.Message}");
+            }
+        }
+
         #region ListUsers
         [HttpGet("Listar-Usuarios")]
         public async Task<IActionResult> ListUsers()

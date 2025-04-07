@@ -13,10 +13,10 @@ namespace iron_revolution_center_api.Data.Interface
     public interface iExercisesService
     {
         // list of exercises
-        public Task<IEnumerable<ExercisesModel>> ListExercises();
+        public Task<IEnumerable<ExercisesModel>> ListExercises(string exerciseType);
 
         // register exercises
-        public Task<InsertExerciseDTO> InsertExercises(InsertExerciseDTO exerciseDTO);
+        public Task<InsertExerciseDTO> InsertExercises(newExerciseDTO exerciseDTO);
 
         // modify exerecises
         public Task<ExercisesModel> ModifyExercises(string exerciseId, ModifyExerciseDTO exerciseDTO);

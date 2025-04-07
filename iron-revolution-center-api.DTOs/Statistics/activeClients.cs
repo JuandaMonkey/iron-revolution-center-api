@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace iron_revolution_center_api.DTOs.Statistics
 {
-    public class branchMostFrecuented
+    public class activeClients
     {
-        public string? Branch_Most_Frecuented { get; set; }
+        public long Active_Clients { get; set; }
     }
 }

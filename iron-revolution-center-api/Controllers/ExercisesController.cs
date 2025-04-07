@@ -16,12 +16,12 @@ namespace iron_revolution_center_api.Controllers
         }
 
         #region ListExercises
-        [HttpGet("Listar-Ejercicios")]
-        public async Task<IActionResult> ListExercises()
+        [HttpGet("ListarEjercicios")]
+        public async Task<IActionResult> ListExercises(string? exercisesId)
         {
             try
             {
-                var exercises = await _exercisesService.ListExercises();
+                var exercises = await _exercisesService.ListExercises(exercisesId);
 
                 if (exercises != null)
                     return Ok(exercises);
@@ -34,8 +34,8 @@ namespace iron_revolution_center_api.Controllers
         #endregion
 
         #region InsertExercises
-        [HttpPost("Insertar-Ejercicio")]
-        public async Task<IActionResult> InsertExercises([FromBody] InsertExerciseDTO exerciseDTO)
+        [HttpPost("InsertarEjercicio")]
+        public async Task<IActionResult> InsertExercises([FromBody] newExerciseDTO exerciseDTO)
         {
             try
             {
@@ -52,8 +52,8 @@ namespace iron_revolution_center_api.Controllers
         #endregion
 
         #region ModifyExercises
-        [HttpPut("Modificar-Ejercicio")]
-        public async Task<IActionResult> ModifyExercises([FromHeader] string exerciseId, [FromBody] ModifyExerciseDTO exerciseDTO)
+        [HttpPut("ModificarEjercicio")]
+        public async Task<IActionResult> ModifyExercises(string exerciseId, [FromBody] ModifyExerciseDTO exerciseDTO)
         {
             try
             {
@@ -71,7 +71,7 @@ namespace iron_revolution_center_api.Controllers
 
         #region DeleteExercises
         [HttpDelete("Eliminar-Ejercicio")]
-        public async Task<IActionResult> DeleteExercises([FromHeader] string exerciseId)
+        public async Task<IActionResult> DeleteExercises(string exerciseId)
         {
             try
             {

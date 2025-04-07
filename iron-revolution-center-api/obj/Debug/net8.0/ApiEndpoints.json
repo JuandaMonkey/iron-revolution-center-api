@@ -350,14 +350,14 @@
   {
     "ContainingType": "iron_revolution_center_api.Controllers.ExercisesController",
     "Method": "InsertExercises",
-    "RelativePath": "api/Exercises/Insertar-Ejercicio",
+    "RelativePath": "api/Exercises/InsertarEjercicio",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
         "Name": "exerciseDTO",
-        "Type": "iron_revolution_center_api.DTOs.Exercise.InsertExerciseDTO",
+        "Type": "iron_revolution_center_api.DTOs.Exercise.newExerciseDTO",
         "IsRequired": true
       }
     ],
@@ -370,13 +370,19 @@
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
-    "Parameters": [],
+    "Parameters": [
+      {
+        "Name": "exercisesId",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
     "ReturnTypes": []
   },
   {
     "ContainingType": "iron_revolution_center_api.Controllers.ExercisesController",
     "Method": "ModifyExercises",
-    "RelativePath": "api/Exercises/Modificar-Ejercicio",
+    "RelativePath": "api/Exercises/ModificarEjercicio",
     "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
@@ -418,7 +424,7 @@
   {
     "ContainingType": "iron_revolution_center_api.Controllers.MembershipsController",
     "Method": "DeleteMembership",
-    "RelativePath": "api/Memberships/Eliminar-Membres\u00EDa",
+    "RelativePath": "api/Memberships/EliminarMembresia",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
@@ -434,14 +440,14 @@
   {
     "ContainingType": "iron_revolution_center_api.Controllers.MembershipsController",
     "Method": "InsertMembership",
-    "RelativePath": "api/Memberships/Insertar-Membres\u00EDa",
+    "RelativePath": "api/Memberships/InsertarMembresia",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
         "Name": "membershipDTO",
-        "Type": "iron_revolution_center_api.DTOs.Membership.InsertMembershipDTO",
+        "Type": "iron_revolution_center_api.DTOs.Membership.newMembershipDTO",
         "IsRequired": true
       }
     ],
@@ -460,7 +466,7 @@
   {
     "ContainingType": "iron_revolution_center_api.Controllers.MembershipsController",
     "Method": "ModifyMembership",
-    "RelativePath": "api/Memberships/Modificar-Membres\u00EDa",
+    "RelativePath": "api/Memberships/ModificarMembresia",
     "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
@@ -583,6 +589,69 @@
     "Parameters": [
       {
         "Name": "branchId",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "iron_revolution_center_api.Controllers.StatisticsController",
+    "Method": "getMostPopularMemberships",
+    "RelativePath": "api/Statistics/MembresiasMasPopulares",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "branchId",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "iron_revolution_center_api.Controllers.StatisticsController",
+    "Method": "getBranchesCount",
+    "RelativePath": "api/Statistics/Sucursales",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "iron_revolution_center_api.Controllers.StatisticsController",
+    "Method": "getMostFrecuentedBranch",
+    "RelativePath": "api/Statistics/SucursalMasVisitada",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "branchId",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "iron_revolution_center_api.Controllers.UsersController",
+    "Method": "putAssignNIP",
+    "RelativePath": "api/Users/AsignarNIP",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "NIP",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "userName",
         "Type": "System.String",
         "IsRequired": false
       }
