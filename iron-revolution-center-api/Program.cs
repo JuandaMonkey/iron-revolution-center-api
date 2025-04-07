@@ -68,7 +68,7 @@ namespace iron_revolution_center_api
             {
                 options.AddPolicy("AllowFrontend", policy =>
                 {
-                    policy.WithOrigins("http://localhost:4200", "https://iron-revolution-center-api.onrender.com")
+                    policy.WithOrigins("http://localhost:4200", "https://iron-revolution-center-api.onrender.com", "https://iron-revolution-center-api.onrender.com/swagger")
                         .AllowAnyHeader()
                         .AllowAnyMethod();
                 });
@@ -77,19 +77,12 @@ namespace iron_revolution_center_api
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
-            if (app.Environment.IsDevelopment())
-            {
-                app.UseSwagger();
-                app.UseSwaggerUI();
-            }
-            else
-            {
-                app.UseHttpsRedirection();
-            }
+            app.UseSwagger();
+            app.UseSwaggerUI(options => {
+                options.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");
+            });
 
             app.UseCors("AllowFrontend");
-
-            app.UseHttpsRedirection();
 
             app.UseAuthentication();
 

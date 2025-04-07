@@ -34,9 +34,9 @@
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\juand\\OneDrive\\Escritorio\\iron-revolution-center\\iron-revolution-center-api\\iron-revolution-center-api\\Program.cs",
               "RelativeDocumentMoniker": "iron-revolution-center-api\\Program.cs",
-              "ToolTip": "C:\\Users\\juand\\OneDrive\\Escritorio\\iron-revolution-center\\iron-revolution-center-api\\iron-revolution-center-api\\Program.cs",
-              "RelativeToolTip": "iron-revolution-center-api\\Program.cs",
-              "ViewState": "AgIAAEoAAAAAAAAAAAAUwF8AAAAjAAAAAAAAAA==",
+              "ToolTip": "C:\\Users\\juand\\OneDrive\\Escritorio\\iron-revolution-center\\iron-revolution-center-api\\iron-revolution-center-api\\Program.cs*",
+              "RelativeToolTip": "iron-revolution-center-api\\Program.cs*",
+              "ViewState": "AgIAAEUAAAAAAAAAAAAkwFIAAAAPAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-07T15:23:50.482Z",
               "EditorCaption": ""
@@ -51,8 +51,7 @@
               "RelativeToolTip": "iron-revolution-center-api\\appsettings.json",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAADAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-04-07T15:23:36.49Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-07T15:23:36.49Z"
             },
             {
               "$type": "Document",
@@ -64,8 +63,7 @@
               "RelativeToolTip": "iron-revolution-center-api\\Properties\\launchSettings.json",
               "ViewState": "AgIAAAQAAAAAAAAAAAAIwCAAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-04-07T15:20:29.096Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-07T15:20:29.096Z"
             }
           ]
         }
