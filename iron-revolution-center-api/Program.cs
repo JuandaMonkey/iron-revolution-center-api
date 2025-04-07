@@ -97,7 +97,7 @@ namespace iron_revolution_center_api
 
             app.MapControllers();
 
-            app.Run();
+            app.Run("http://*:80");
         }
     }
 }
